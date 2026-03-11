@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"name": "mysap(ABAP)",
+			"uri": "adt://mysap"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}

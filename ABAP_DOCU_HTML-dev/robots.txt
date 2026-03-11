@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+Allow: *
+Sitemap: https://help.sap.com/http.svc/rc/abapdocu_754_index_htm/7.54/en-US/abap_docu_sitemap.xml

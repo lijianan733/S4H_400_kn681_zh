@@ -1,0 +1,107 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENSHM_CL_IMODE_AREA -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="Shared Objects - CL_IMODE_AREA">
+<title>
+Shared Objects - CL_IMODE_AREA - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenshm_cl_imode_area.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenshm_cl_imode_area.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 754, &copy;Copyright 2025 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP &#x2212; Reference</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencreate_objects.htm')" class="blue">Creating Objects and Values</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_shared_objects.htm')" class="blue">Shared Objects</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenshm_classes.htm')" class="blue">Shared Objects - Classes and Interfaces</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenshm_cl_abap_memory_area.htm')" class="blue">Shared Objects - CL_ABAP_MEMORY_AREA</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@CL_IMODE_AREA@@!ABAP_CLASS!@@"></A>
+<p><span class="h1">
+Shared Objects - CL_IMODE_AREA
+</span></p>
+<p>
+The class <span class="lnkgrey">CL_IMODE_AREA</span> is a subclass of
+<a href="javascript:call_link('abenshm_cl_abap_memory_area.htm')" class="blue">CL_ABAP_MEMORY_AREA</a> and a predefined
+<a href="javascript:call_link('abenarea_class_glosry.htm')" class="grey" title="词汇表条目">area class</a> that enables the current internal session to be handled as an
+<a href="javascript:call_link('abenarea_instance_version_glosry.htm')" class="grey" title="词汇表条目">area instance version</a>. There can be exactly one instance of the class CL_IMODE_AREA (singleton) in an internal session. This instance is an
+<a href="javascript:call_link('abenarea_handle_glosry.htm')" class="grey" title="词汇表条目">area handle</a> for the current <a href="javascript:call_link('abeninternal_session_glosry.htm')" class="grey" title="词汇表条目">internal session</a>.
+</p>
+<A name="@@ITOC@@ABENSHM_CL_IMODE_AREA_1"></A>
+<p><span class="h2">
+Static Methods
+</span></p>
+<A name="@@ITOC@@ABENSHM_CL_IMODE_AREA_2"></A>
+<p><span class="h3">
+GET_IMODE_HANDLE
+</span></p>
+<p>
+Returns a reference to the area handle for the current internal session.
+</p>
+<p><span class="h4">
+Return Value
+</span></p>
+<ul class="disc">
+<li>HANDLE of type <span class="qtext">REF TO cl_imode_area</span></li>
+</ul>
+<p>
+
+</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

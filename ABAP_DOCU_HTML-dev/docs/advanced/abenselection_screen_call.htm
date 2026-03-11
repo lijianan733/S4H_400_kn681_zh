@@ -1,0 +1,138 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENSELECTION_SCREEN_CALL -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="Calling Selection Screens">
+<meta name="keywords" content="ABAP, Call Selection Screens">
+<title>
+Calling Selection Screens - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenselection_screen_call.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenselection_screen_call.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 754, &copy;Copyright 2025 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP &#x2212; Reference</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_screens.htm')" class="blue">SAP GUI User Dialogs</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenselection_screen.htm')" class="blue">Selection Screens</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+Calling Selection Screens
+</span></p>
+<p>
+<a href="javascript:call_link('abenselection_screen_glosry.htm')" class="grey" title="词汇表条目">Selection screens</a> can be called as follows:
+</p>
+<ul class="disc">
+<li>by the statement <a href="javascript:call_link('abapsubmit.htm')" class="blue"><span class="qtext">SUBMIT</span></a></li>
+</ul>
+<ul class="disc">
+<li>as a selection screen of a <a href="javascript:call_link('abenreport_transaction_glosry.htm')" class="grey" title="词汇表条目">report transaction</a></li>
+</ul>
+<ul class="disc">
+<li>as the initial dynpro of a <a href="javascript:call_link('abendialog_transaction_glosry.htm')" class="grey" title="词汇表条目">dialog transaction</a></li>
+</ul>
+<ul class="disc">
+<li>by the statement <a href="javascript:call_link('abapcall_selection_screen.htm')" class="blue"><span class="qtext">CALL SELECTION-SCREEN</span></a></li>
+</ul>
+<p>
+Each call starts <a href="javascript:call_link('abenselscreen_processing_glosry.htm')" class="grey" title="词汇表条目">selection screen processing</a>. The display language of the selection screen is determined by the current
+<a href="javascript:call_link('abentext_env_langu_glosry.htm')" class="grey" title="词汇表条目">text environment language</a>, which
+can be set with the statement <a href="javascript:call_link('abapset_locale.htm')" class="blue"><span class="qtext">SET LOCALE LANGUAGE</span></a>. <br><br>
+</p>
+<A name="@@ITOC@@ABENSELECTION_SCREEN_CALL_1"></A>
+<p><span class="h3">
+Called by SUBMIT
+</span></p>
+<p>
+When an <a href="javascript:call_link('abenexecutable_program_glosry.htm')" class="grey" title="词汇表条目">executable program</a>
+is called using the statement <span class="qtext">SUBMIT</span>, the standard selection screen or the
+selection screen specified in the statement is called between the events <a href="javascript:call_link('abapinitialization.htm')" class="blue">
+<span class="qtext">INITIALIZATION</span></a> and <a href="javascript:call_link('abapstart-of-selection.htm')" class="blue"><span class="qtext">START-OF-SELECTION</span></a>, if it contains at least one input field or pushbutton. <br><br>
+</p>
+<A name="@@ITOC@@ABENSELECTION_SCREEN_CALL_2"></A>
+<p><span class="h3">
+Called by report transaction
+</span></p>
+<p>
+When a report transaction is executed, the associated executable program is also started internally
+using <span class="qtext">SUBMIT</span> and the selection screen defined for the transaction is called
+between the events <span class="qtext">INITIALIZATION</span> and <span class="qtext">START-OF-SELECTION</span>. <br><br>
+</p>
+<A name="@@ITOC@@ABENSELECTION_SCREEN_CALL_3"></A>
+<p><span class="h3">
+Called by dialog transaction
+</span></p>
+<p>
+If a selection screen of the associated program is defined as the initial dynpro in a dialog transaction,
+the transaction code is used to call the selection screen when this program is executed. This screen is not handled like the first dynpro in a
+<a href="javascript:call_link('abendynpro_sequence_glosry.htm')" class="grey" title="词汇表条目">dynpro sequence</a> however (see <a href="javascript:call_link('abenselection_screen_events.htm')" class="blue">Selection Screen Processing</a>).
+</p>
+<p><span class="h4">
+Notes
+</span></p>
+<ul class="disc">
+<li>You should not use a selection screen as the initial screen of a dialog transaction, since this does not generally produce the expected program behavior.</li>
+</ul>
+<ul class="disc">
+<li>The display language of a general dynpro is the
+<a href="javascript:call_link('abenlogon_language_glosry.htm')" class="grey" title="词汇表条目">logon language</a> and not the <a href="javascript:call_link('abentext_env_langu_glosry.htm')" class="grey" title="词汇表条目">text environment language</a>.</li>
+</ul>
+<br>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<a href="javascript:call_link('abapcall_selection_screen.htm')" class="blue">CALL SELECTION-SCREEN</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

@@ -1,0 +1,114 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENRFC_IP_DEST -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="Error in RFC destination after IP addresses changed">
+<title>
+Error in RFC destination after IP addresses changed - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenrfc_ip_dest.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenrfc_ip_dest.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 754, &copy;Copyright 2025 SAP SE. All rights reserved.</p>
+<span class="path">
+</span>
+<A name="@@ITOC@@ABENRFC_IP_DEST_1"></A>
+<p><span class="h2">
+Error in RFC destination after IP addresses changed
+</span></p>
+<p>
+After the IP address of a host was changed, the <a href="javascript:call_link('abendestination_glosry.htm')" class="grey" title="词汇表条目">RFC destinations</a> using the host as a target do not work.
+</p>
+<A name="@@ITOC@@ABENRFC_IP_DEST_2"></A>
+<p><span class="h3">
+Cause and Conditions
+</span></p>
+<p>
+If the host name is entered when an RFC destination (for example hs0330) is defined, it is saved in table RFCDES (destination administration) as an IP address. <br>
+This action reduces the time needed to set up RFC connections, among other things. The target host name
+no longer needs to be transformed to its IP address when the connection is made. Furthermore, the length of a host name (such as a domain name server) can be any length, which is not suitable for storage in table RFCDES.
+</p>
+<p>
+Problems occur here if the IP address of the target host changes. For this reason, the RFC destinations in question must be modified if the IP address of the target host changes.
+</p>
+<p>
+Notes:
+</p>
+<ul class="disc">
+<li>If the name of the target host is not to be stored as an IP address in the database table RFCDES,
+it must be entered as an SAP router name (/H/hs0311 instead of hs0311). In this case, the host name is saved as the SAP router name in table RFCDES.</li>
+</ul>
+<ul class="disc">
+<li>If the SAP router notation is not used when the target host is entered, the system performs the following steps internally:</li>
+</ul>
+<ul class="circlem2">
+<li>The host name is transformed to its IP address. If the transformation is successful, the IP address is saved as the target host address in table RFCDES.</li>
+</ul>
+<ul class="circlem2">
+<li>The IP address is transformed to its domain name server name (DNS name). It is possible that the DNS name is not the same as the host name. <br>
+For example, Windows NT displays host names in uppercase or in long notation. Hence hw1426 is displayed
+as HW1426 or hw1426.wdf.sap-ag.de. The DNS name is only used for display in the RFC destination. <br>The way in which the IP address is represented as a DNS or host name has no effect on RFC communication.</li>
+</ul>
+<A name="@@ITOC@@ABENRFC_IP_DEST_3"></A>
+<p><span class="h3">
+Solution
+</span></p>
+<p>
+If the target host name is not entered as an SAP router name and the IP address of the host is changed, the relevant RFC destinations must be modified.
+</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>
