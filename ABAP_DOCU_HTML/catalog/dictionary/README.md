@@ -1,0 +1,21 @@
+# 数据字典（ABAP Dictionary）
+
+- 入口与经典对象
+  - [abenabap_dictionary.htm](../../abenabap_dictionary.htm)
+  - [abenddic_classical_objects.htm](../../abenddic_classical_objects.htm)
+- 数据类型与组成
+  - [abenddic_data_types.htm](../../abenddic_data_types.htm)
+  - [abenddic_data_elements.htm](../../abenddic_data_elements.htm)
+  - [abenddic_domains.htm](../../abenddic_domains.htm)
+  - [abenddic_structures.htm](../../abenddic_structures.htm)
+  - [abenddic_table_types.htm](../../abenddic_table_types.htm)
+- 数据库表与视图
+  - [abenddic_database_tables.htm](../../abenddic_database_tables.htm)
+  - [abenddic_views.htm](../../abenddic_views.htm)
+- 增强与替换对象
+  - [abenddic_enhancements.htm](../../abenddic_enhancements.htm)
+  - [abenddic_replacement_objects.htm](../../abenddic_replacement_objects.htm)
+- 词条示例（技术/语义属性与外键）
+  - [abenddic_database_tables_tech.htm](../../abenddic_database_tables_tech.htm)
+  - [abenddic_database_tables_sema.htm](../../abenddic_database_tables_sema.htm)
+  - [abenddic_database_tables_forkeyrel.htm](../../abenddic_database_tables_forkeyrel.htm)

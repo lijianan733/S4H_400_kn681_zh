@@ -1,0 +1,109 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- DYNPLINE-COMMANDS -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="DYNPLINE-COMMANDS">
+<title>
+ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=dynpline-commands.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=dynpline-commands.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 754, &copy;Copyright 2025 SAP SE. All rights reserved.</p>
+<span class="path">
+</span>
+<p>
+Line Commands: <br>----------------- <br>
+</p>
+<p>
+* Line commands must be entered in the first osition of the <br>* line number: <br>
+</p>
+<p>
+In      Insert new lines (n=number) <br>Rn      Duplicate lines (n=number) <br>
+</p>
+<p>
+A      Specification of target line (AFTER) for COPY or <br>                                         MOVE Commands <br>B       Specification of target line (BEFORE) <br>
+</p>
+<p>
+C       Copy a line <br>CC...CC Copy line block <br>M       Copy and delete a line <br>MM...MM Copy and delete line block <br>
+</p>
+<p>
+D       Delete a line <br>DD...DD Delete a line block <br>
+</p>
+<p>
+T+      Position on first line <br>B-      Position on last line <br> *      Position on selected line <br>
+</p>
+<p>
+RESET   Reset marked line command <br>
+</p>
+<p>
+X       Copy the lines marked in the stack 'X', 'Y' oder 'Z' <br>Y       behind the line marked with 'X', 'Y', 'Z' <br>
+Z <br>XX...XX Remember line command block in the stack 'X', <br>YY...YY                                  'Y' or <br>ZZ...ZZ                                  'Z' <br> <br>
+</p>
+<p>
+S       Split the line at the position marked <br>        by the cursor <br>
+</p>
+<p>
+SH...SH Shift a line block to the left or right <br>        according to the distance of the cursor from the first <br>        character not equal to blank in the line. <br>
+</p>
+<p>
+C...O   Copy all characters from line 'C' that are <br>        blank in line 'O' . <br>C.OO.OO Copy all characters from line 'C' that are <br>
+        blank in the line block marked by 'OO' <br>        . <br>M...O   Copy all characters from line 'M' that are blank in <br>
+        line 'O'. Delete line 'M'. <br>        (cancel split of line 'S'). <br>M.OO.OO Copy all characters from line 'C' that are blank <br>        in the line block marked by 'OO'. <br>        Delete line 'M'.
+</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

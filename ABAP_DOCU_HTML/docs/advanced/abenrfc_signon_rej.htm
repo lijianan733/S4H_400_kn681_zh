@@ -1,0 +1,129 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENRFC_SIGNON_REJ -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="RFC logon screen appears">
+<title>
+RFC logon screen appears - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenrfc_signon_rej.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenrfc_signon_rej.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 754, &copy;Copyright 2025 SAP SE. All rights reserved.</p>
+<span class="path">
+</span>
+<p><span class="h1">
+RFC logon screen appears
+</span></p>
+<p>
+The RFC logon has failed.
+</p>
+<p>
+This can also occur when executing functions (such as release notes) using the transaction <span class="lnkgrey">SM51</span>.
+</p>
+<p>
+If an RFC logon fails and no logon screen appears, the system writes CALL_FUNCTION_SIGNON_REJECTED or
+CALL_FUNCTION_SYSCALL_ONLY to the system log (transaction <span class="lnkgrey">SM21</span>) and the developer trace files (dev_w*).
+</p>
+<A name="@@ITOC@@ABENRFC_SIGNON_REJ_1"></A>
+<p><span class="h3">
+Cause and Conditions
+</span></p>
+<p>
+This situation only arises if an RFC logon fails.
+</p>
+<p>
+If the RFC connection is in the same client with the same user, you do not need to log on. The RFC logon
+screen and the entries CALL_FUNCTION_SIGNON_REJECTED or CALL_FUNCTION_SYSCALL_ONLY only occur in the following cases:
+</p>
+<ul class="disc">
+<li>The <a href="javascript:call_link('abendestination_glosry.htm')" class="grey" title="词汇表条目">RFC destination</a> uses the
+wrong logon data (in other words, the values entered for client, user, and password do not constitute a valid logon).</li>
+</ul>
+<ul class="disc">
+<li>Not all servers within a system have the same kernel release and patch level.</li>
+</ul>
+<ul class="disc">
+<li>The server does not have enough <a href="javascript:call_link('abenshared_memory_glosry.htm')" class="grey" title="词汇表条目">shared memory</a> (
+<a href="javascript:call_link('abenpxa_glosry.htm')" class="grey" title="词汇表条目">PXA</a> memory). For further details, see transaction
+<span class="lnkgrey">ST22</span> (ABAP dump analysis) and the ABAP runtime errors PXA_NO_SHARD_MEMORY or PXA_NO_FREE_SPACE.</li>
+</ul>
+<ul class="disc">
+<li>The database ID is different on the different servers within the system. This can be the case, for
+example, if more than one network card is installed on the database server, so that some servers identify
+the database server under a different host name and IP address. You may be able to see this data in the database data section of the system status display for the relevant server. The RFC logon screen only appears in dialog mode. In
+<a href="javascript:call_link('abenbackround_processing_glosry.htm')" class="grey" title="词汇表条目">background processing</a>,
+RFC communication terminates with a message that the logon data was incorrect (CALL_FUNCTION_SIGNON_REJECTED or CALL_FUNCTION_SYSCALL_ONLY in the developer trace file or the system log).</li>
+</ul>
+<A name="@@ITOC@@ABENRFC_SIGNON_REJ_2"></A>
+<p><span class="h3">
+Solution <br><br>
+</span></p>
+<ul class="disc">
+<li>Check the logon data against the <a href="javascript:call_link('abendestination_glosry.htm')" class="grey" title="词汇表条目">RFC destination</a> used. Ensure that the user has not been locked.</li>
+</ul>
+<ul class="disc">
+<li>Ensure that all of the servers have the same kernel release and patch level.</li>
+</ul>
+<ul class="disc">
+<li>Fix the shared memory (PXA) problem.</li>
+</ul>
+<ul class="disc">
+<li>Ensure that all servers access the database server using the same host name and IP address.</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAP系统数据报告 - MCP测试</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #005691 0%, #0073e6 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .header p {
+            margin: 10px 0 0;
+            opacity: 0.9;
+        }
+        .section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .section h2 {
+            color: #005691;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .data-card {
+            background: #f8f9fa;
+            border-left: 4px solid #0073e6;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .data-card h3 {
+            margin-top: 0;
+            color: #005691;
+        }
+        pre {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+        }
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .tool-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        .tool-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+        }
+        .timestamp {
+            color: #666;
+            font-size: 0.9em;
+            text-align: right;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>SAP系统数据报告</h1>
+        <p>通过MCP (Model Context Protocol) 工具获取的SAP ECC系统数据</p>
+    </div>
+
+    <div class="section">
+        <h2>测试概述</h2>
+        <p>本次测试使用MCP服务器 <strong>mcp-abap-adt-ecc</strong> 连接到SAP ECC系统，成功获取了系统数据。</p>
+        <p>测试时间: <span id="current-time"></span></p>
+        <p>状态: <span class="success">✓ MCP连接成功，数据获取正常</span></p>
+    </div>
+
+    <div class="section">
+        <h2>可用的MCP工具</h2>
+        <div class="tool-list">
+            <div class="tool-item">
+                <h3>GetProgram</h3>
+                <p>获取ABAP程序源代码</p>
+            </div>
+            <div class="tool-item">
+                <h3>GetClass</h3>
+                <p>获取ABAP类源代码</p>
+            </div>
+            <div class="tool-item">
+                <h3>GetFunctionGroup</h3>
+                <p>获取ABAP函数组源代码</p>
+            </div>
+            <div class="tool-item">
+                <h3>GetFunction</h3>
+                <p>获取ABAP函数模块源代码</p>
+            </div>
+            <div class="tool-item">
+                <h3>GetStructure</h3>
+                <p>获取ABAP结构</p>
+            </div>
+            <div class="tool-item">
+                <h3>GetTable</h3>
+                <p>获取ABAP表结构</p>
+            </div>
+            <div class="tool-item">
+                <h3>GetTableContents</h3>
+                <p>获取ABAP表内容</p>
+            </div>
+            <div class="tool-item">
+                <h3>GetPackage</h3>
+                <p>获取ABAP包详情</p>
+            </div>
+            <div class="tool-item">
+                <h3>SearchObject</h3>
+                <p>搜索ABAP对象</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>获取的SAP系统数据</h2>
+        
+        <div class="data-card">
+            <h3>1. 搜索ABAP对象结果</h3>
+            <p>使用SearchObject工具搜索 "*" 返回的前10个对象:</p>
+            <pre><adtcore:objectReferences>
+  <adtcore:objectReference adtcore:uri="/sap/bc/adt/vit/wb/object_type/ldbal/object_name/%24%24S" 
+    adtcore:type="LDBA/L" adtcore:name="$$S" adtcore:packageName="SABP" 
+    adtcore:description="逻辑数据库"/>
+  <adtcore:objectReference adtcore:uri="/sap/bc/adt/packages/%24%2f1bea%2fbbea" 
+    adtcore:type="DEVC/K" adtcore:name="$/1BEA/BBEA" adtcore:packageName="$/1BEA/BBEA" 
+    adtcore:description="Package"/>
+  <adtcore:objectReference adtcore:uri="/sap/bc/adt/packages/%24%2f1bea%2fcnpl" 
+    adtcore:type="DEVC/K" adtcore:name="$/1BEA/CNPL" adtcore:packageName="$/1BEA/CNPL" 
+    adtcore:description="Package"/>
+  <adtcore:objectReference adtcore:uri="/sap/bc/adt/packages/%24%2f1bea%2fcrmb" 
+    adtcore:type="DEVC/K" adtcore:name="$/1BEA/CRMB" adtcore:packageName="$/1BEA/CRMB" 
+    adtcore:description="Package"/>
+  <adtcore:objectReference adtcore:uri="/sap/bc/adt/packages/%24%2f1bea%2fcrmr" 
+    adtcore:type="DEVC/K" adtcore:name="$/1BEA/CRMR" adtcore:packageName="$/1BEA/CRMR" 
+    adtcore:description="Package"/>
+</adtcore:objectReferences></pre>
+        </div>
+
+        <div class="data-card">
+            <h3>2. 表MARA结构信息</h3>
+            <p>使用GetTable工具获取物料主数据表MARA的结构:</p>
+            <pre>@EndUserText.label : 'General Material Data'
+@AbapCatalog.enhancementCategory : #EXTENSIBLE_CHARACTER_NUMERIC
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #LIMITED
+define table mara {
+  key mandt : mandt not null
+    with foreign key [0..*,1] t000
+      where mandt = mara.mandt;
+  key matnr : matnr not null
+    with value help mat1
+      where matnr = mara.matnr;
+  ...
+}</pre>
+            <p>表MARA包含物料主数据的关键字段，如物料号(matnr)、客户端(mandt)等。</p>
+        </div>
+
+        <div class="data-card">
+            <h3>3. 搜索SAPL*程序结果</h3>
+            <p>使用SearchObject工具搜索 "SAPL*" 返回的结果:</p>
+            <pre><adtcore:objectReferences>
+  <adtcore:objectReference adtcore:uri="/sap/bc/adt/vit/wb/object_type/trant/object_name/SAPL" 
+    adtcore:type="TRAN/T" adtcore:name="SAPL" adtcore:packageName="SZAL_ODATA_DT_GUI" 
+    adtcore:description="事务"/>
+  <adtcore:objectReference adtcore:uri="/sap/bc/adt/functions/groups/0001_bapi/source/main" 
+    adtcore:type="FUGR/I" adtcore:name="SAPL0001_BAPI" adtcore:packageName="COBAPI" 
+    adtcore:description="包含文件"/>
+  <adtcore:objectReference adtcore:uri="/sap/bc/adt/functions/groups/0002/source/main" 
+    adtcore:type="FUGR/I" adtcore:name="SAPL0002" adtcore:packageName="FBASCORE" 
+    adtcore:description="包含文件"/>
+</adtcore:objectReferences></pre>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>测试结论</h2>
+        <div class="data-card">
+            <h3>✓ MCP连接测试成功</h3>
+            <p>MCP服务器 <strong>mcp-abap-adt-ecc</strong> 成功连接到SAP ECC系统。</p>
+            <p>能够通过MCP工具获取SAP系统中的各种对象和数据。</p>
+        </div>
+        
+        <div class="data-card">
+            <h3>✓ 数据获取能力验证</h3>
+            <p>已验证以下数据获取功能:</p>
+            <ul>
+                <li>搜索ABAP对象</li>
+                <li>获取表结构定义</li>
+                <li>搜索特定类型的对象</li>
+            </ul>
+        </div>
+        
+        <div class="data-card">
+            <h3>✓ 系统信息确认</h3>
+            <p>通过获取的数据可以确认:</p>
+            <ul>
+                <li>SAP系统正常运行</li>
+                <li>ABAP开发对象可访问</li>
+                <li>标准SAP表结构完整</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="timestamp">
+        报告生成时间: <span id="report-time">2025年12月30日 22:33:30</span><br>
+        MCP服务器: mcp-abap-adt-ecc<br>
+        测试状态: 完成
+    </div>
+
+    <script>
+        // 设置当前时间
+        const now = new Date();
+        const options = { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false,
+            timeZone: 'Asia/Shanghai'
+        };
+        const timeStr = now.toLocaleDateString('zh-CN', options);
+        document.getElementById('current-time').textContent = timeStr;
+        document.getElementById('report-time').textContent = timeStr;
+    </script>
+</body>
+</html>

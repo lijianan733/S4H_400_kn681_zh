@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Z251230_REPORT_1 搜索结果</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+      .header {
+        background: linear-gradient(135deg, #d9534f 0%, #c9302c 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 2.5em;
+      }
+      .header p {
+        margin: 10px 0 0;
+        opacity: 0.9;
+      }
+      .section {
+        background: white;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+      .section h2 {
+        color: #005691;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 10px;
+        margin-top: 0;
+      }
+      .data-card {
+        background: #f8f9fa;
+        border-left: 4px solid #0073e6;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+      }
+      .data-card h3 {
+        margin-top: 0;
+        color: #005691;
+      }
+      pre {
+        background: #f8f9fa;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+        padding: 15px;
+        overflow-x: auto;
+        font-family: "Consolas", "Monaco", monospace;
+        font-size: 0.9em;
+        line-height: 1.4;
+        max-height: 500px;
+        overflow-y: auto;
+      }
+      .success {
+        color: #28a745;
+        font-weight: bold;
+      }
+      .warning {
+        color: #f0ad4e;
+        font-weight: bold;
+      }
+      .error {
+        color: #dc3545;
+        font-weight: bold;
+      }
+      .info {
+        color: #5bc0de;
+        font-weight: bold;
+      }
+      .search-results {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 15px;
+      }
+      .result-item {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        border: 1px solid #e0e0e0;
+      }
+      .timestamp {
+        color: #666;
+        font-size: 0.9em;
+        text-align: right;
+        margin-top: 30px;
+        padding-top: 15px;
+        border-top: 1px solid #e0e0e0;
+      }
+      .code-summary {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        border-left: 4px solid #28a745;
+      }
+      .highlight {
+        background-color: #fff3cd;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Z251230_REPORT_1 搜索报告</h1>
+      <p>使用MCP工具搜索和获取SAP报表内容的结果</p>
+    </div>
+
+    <div class="section">
+      <h2>搜索概述</h2>
+      <p>搜索目标: <span class="highlight">Z251230_REPORT_1</span></p>
+      <p>搜索时间: <span id="current-time"></span></p>
+      <p>搜索状态: <span class="warning">⚠ 目标报表未找到</span></p>
+      <p>MCP服务器: <span class="info">mcp-abap-adt-ecc</span></p>
+    </div>
+
+    <div class="section">
+      <h2>搜索结果详情</h2>
+
+      <div class="data-card">
+        <h3>1. 直接搜索 Z251230_REPORT_1</h3>
+        <p>
+          使用GetProgram工具直接获取:
+          <span class="error">未找到对象 Z251230_REPORT_1</span>
+        </p>
+        <p>
+          使用SearchObject工具精确搜索: <span class="error">无搜索结果</span>
+        </p>
+      </div>
+
+      <div class="data-card">
+        <h3>2. 相关对象搜索</h3>
+        <p>搜索 "Z25123*" 找到的对象:</p>
+        <div class="search-results">
+          <div class="result-item">
+            <h4>Z251230_MCP</h4>
+            <p>类型: Package (DEVC/K)</p>
+            <p>描述: 包</p>
+          </div>
+          <div class="result-item">
+            <h4>Z251230_MCPCHAR1</h4>
+            <p>类型: Data Element (DTEL/DE)</p>
+            <p>描述: 数据元素</p>
+          </div>
+          <div class="result-item">
+            <h4>Z251230_MCPCHAR30</h4>
+            <p>类型: Data Element (DTEL/DE)</p>
+            <p>描述: 数据元素</p>
+          </div>
+          <div class="result-item">
+            <h4>Z251230_MCPCO_Z_TABLECONTENT</h4>
+            <p>类型: Class (CLAS/OC)</p>
+            <p>描述: 类</p>
+          </div>
+          <div class="result-item">
+            <h4>Z251230_MCPRFC_READ_TABLE</h4>
+            <p>类型: Structure (TABL/DS)</p>
+            <p>描述: 结构</p>
+          </div>
+        </div>
+        <p>
+          共找到 <span class="highlight">20个</span> 以 Z251230
+          开头的对象，但没有找到 Z251230_REPORT_1。
+        </p>
+      </div>
+
+      <div class="data-card">
+        <h3>3. 类似报表搜索</h3>
+        <p>搜索 "Z2512*REPORT*" 找到的报表:</p>
+        <div class="search-results">
+          <div class="result-item">
+            <h4>Z251204_REPORT_1</h4>
+            <p>类型: Program (PROG/P)</p>
+            <p>包: Z25104</p>
+          </div>
+          <div class="result-item">
+            <h4>Z251207_REPORT_1</h4>
+            <p>类型: Program (PROG/P)</p>
+            <p>包: ZNANTEST_COMMON</p>
+          </div>
+          <div class="result-item">
+            <h4>Z251208_REPORT_1</h4>
+            <p>类型: Program (PROG/P)</p>
+            <p>包: ZNANTEST_COMMON</p>
+          </div>
+          <div class="result-item">
+            <h4>Z251209_REPORT_1</h4>
+            <p>类型: Program (PROG/P)</p>
+            <p>包: ZNANTEST_COMMON</p>
+          </div>
+          <div class="result-item">
+            <h4>Z251210_REPORT_1</h4>
+            <p>类型: Program (PROG/P)</p>
+            <p>包: ZNANTEST_COMMON</p>
+          </div>
+          <div class="result-item">
+            <h4>Z251210_REPORT_2</h4>
+            <p>类型: Program (PROG/P)</p>
+            <p>包: ZNANTEST_COMMON</p>
+          </div>
+          <div class="result-item">
+            <h4>Z251210_REPORT_3</h4>
+            <p>类型: Program (PROG/P)</p>
+            <p>包: ZNANTEST_COMMON</p>
+          </div>
+          <div class="result-item">
+            <h4>Z251210_REPORT_4</h4>
+            <p>类型: Program (PROG/P)</p>
+            <p>包: ZNANTEST_COMMON</p>
+          </div>
+        </div>
+        <p>
+          共找到 <span class="highlight">20个</span> 以 Z2512 开头且包含 REPORT
+          的报表程序。
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>示例报表内容 (Z251204_REPORT_1)</h2>
+      <p>由于 Z251230_REPORT_1 不存在，这里展示一个类似的报表内容作为示例:</p>
+
+      <div class="code-summary">
+        <h3>Z251204_REPORT_1 代码摘要</h3>
+        <ul>
+          <li><strong>报表名称:</strong> z251204_report_1</li>
+          <li><strong>用途:</strong> 显示用户数据报表</li>
+          <li>
+            <strong>主要功能:</strong>
+            <ul>
+              <li>从表 Z251104_TABLE_2 读取用户数据</li>
+              <li>使用选择屏幕过滤数据</li>
+              <li>使用 ALV (SALV) 显示表格</li>
+              <li>支持列标题本地化（中文）</li>
+            </ul>
+          </li>
+          <li>
+            <strong>技术特点:</strong>
+            <ul>
+              <li>使用面向对象编程（本地类 LCL_REPORT）</li>
+              <li>使用 CL_SALV_TABLE 进行 ALV 输出</li>
+              <li>使用 CL_GUI_DOCKING_CONTAINER 进行界面布局</li>
+              <li>使用内存（EXPORT/IMPORT）传递数据</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="data-card">
+        <h3>完整源代码</h3>
+        <pre>
+*&---------------------------------------------------------------------*
+*& Report z251204_report_1
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+report z251204_report_1.
+tables: z251104_table_2,z251204.
+
+"方法定义"
+class lcl_report definition.
+
+  public section.
+    types:begin of wa_data,
+            ebeln type ekko-ebeln, "采购订单
+
+          end of wa_data.
+    methods get_data.   "获取数据
+    methods generate_output. "输出表格
+
+endclass.
+
+data: lo_report type ref to lcl_report.
+types: begin of type1,
+         userno type z251104_table_2-userno,
+         name   type z251104_table_2-name,
+         teleno type z251104_table_2-teleno,
+         sex    type z251104_table_2-sex.
+
+types end of type1.
+
+
+data lv_tab1 type standard table of type1.
+" 选择屏幕
+selection-screen: begin of block blk1 with frame title blk1.
+  select-options: s_pro_no for z251104_table_2-project obligatory,
+                  s_pro_na for z251104_table_2-name .
+selection-screen: end of block blk1.
+
+" 初始化
+
+initialization.
+  lo_report = new #( )."实例化
+  lo_report->generate_output( ). "表格
+
+start-of-selection.
+  data(obj1) = new lcl_report( ).
+  obj1->get_data( ).
+
+
+
+class lcl_report implementation.
+  method get_data.
+    " 数据获取
+    select
+       t1~userno,
+       t1~name,
+       t1~teleno,
+       t1~sex
+   from z251104_table_2 as t1
+
+    into corresponding fields of table @lv_tab1.
+
+
+    export data = lv_tab1 to memory id sy-cprog.
+
+    if sy-dbcnt is initial.
+      message s398(00) with 'No data selected'.
+    endif.
+  endmethod.
+
+
+  method generate_output.
+    data lo_dock type ref to cl_gui_docking_container.
+    data lo_cont type ref to cl_gui_container.
+    data lo_alv  type ref to cl_salv_table.
+
+
+* 从内存中接收输出表，然后释放内存
+    import data = lv_tab1  from memory id sy-cprog.
+    free memory id sy-cprog.
+
+</pre
+        >
+      </div>
+    </div>
+  </body>
+</html>

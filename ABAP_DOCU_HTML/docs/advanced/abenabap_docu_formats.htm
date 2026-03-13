@@ -1,0 +1,300 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENABAP_DOCU_FORMATS -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="Some Formats Used in ABAP Keyword Documentation">
+<title>
+Some Formats Used in ABAP Keyword Documentation - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenabap_docu_formats.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenabap_docu_formats.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 754, &copy;Copyright 2025 SAP SE. All rights reserved.</p>
+<span class="path">
+</span>
+<p>
+Breadcrumb
+</p>
+<p><span class="h1">
+Some Formats Used in ABAP Keyword Documentation
+</span></p>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENABAP_DOCU_FORMATS_1" class="blue">Text with links</A></li>
+</ul>
+<ul class="circlem2">
+<li><A HREF="#@@ITOC@@ABENABAP_DOCU_FORMATS_2" class="blue">Link to other document</A></li>
+</ul>
+<ul class="circlem2">
+<li><A HREF="#@@ITOC@@ABENABAP_DOCU_FORMATS_3" class="blue">Link to glossary</A></li>
+</ul>
+<ul class="circlem2">
+<li><A HREF="#@@ITOC@@ABENABAP_DOCU_FORMATS_4" class="blue">Link to tool</A></li>
+</ul>
+<ul class="circlem2">
+<li><A HREF="#@@ITOC@@ABENABAP_DOCU_FORMATS_5" class="blue">Some Inline Formats</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENABAP_DOCU_FORMATS_6" class="blue">Source code</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENABAP_DOCU_FORMATS_7" class="blue">Table</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENABAP_DOCU_FORMATS_8" class="blue">Bulleted lists</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENABAP_DOCU_FORMATS_9" class="blue">Numbered lists</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENABAP_DOCU_FORMATS_10" class="blue">Figure</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENABAP_DOCU_FORMATS_11" class="blue">Internal links</A></li>
+</ul>
+<A name="@@ITOC@@ABENABAP_DOCU_FORMATS_1"></A>
+<p><span class="h2">
+Text with links
+</span></p>
+<A name="@@ITOC@@ABENABAP_DOCU_FORMATS_2"></A>
+<p><span class="h3">
+Link to other document
+</span></p>
+<p>
+Text text text <a href="javascript:call_link('abenabap.htm')" class="blue">ABAP</a>
+</p>
+<A name="@@ITOC@@ABENABAP_DOCU_FORMATS_3"></A>
+<p><span class="h3">
+Link to glossary
+</span></p>
+<p>
+Text text text <a href="javascript:call_link('abenabap_glosry.htm')" class="grey" title="词汇表条目">ABAP</a>
+</p>
+<A name="@@ITOC@@ABENABAP_DOCU_FORMATS_4"></A>
+<p><span class="h3">
+Link to tool
+</span></p>
+<p>
+Text text text <span class="lnkgrey">CL_ABAP_BROWSER</span>
+</p>
+<A name="@@ITOC@@ABENABAP_DOCU_FORMATS_5"></A>
+<p><span class="h3">
+Some Inline Formats
+</span></p>
+<p>
+<span class="italic">italic</span>, <span class="bold">bold</span>, <span class="qtext">Loop</span>, <span class="qtext400">non proportional</span>
+</p>
+<A name="@@ITOC@@ABENABAP_DOCU_FORMATS_6"></A>
+<p><span class="h2">
+Source code
+</span></p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Text text text <span class="qtext">test</span> text text text <span class="qtext400">"Hello World!"</span>
+</p>
+<p class="qtextml1">
+<span class="qtext">
+REPORT test. <br> <br>cl_demo_output=>display( |Hello World!| ).
+</span>
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+XML
+</p>
+<dl><dd>
+<span class="qtext400">&lt;tt:transform <br>&nbsp;&nbsp;xmlns:tt="http://www.sap.com/transformation-templates"> <br>
+&nbsp;&nbsp;&lt;tt:template> <br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;X0> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;X1> a b c &lt;/X1> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;X2>&lt;tt:text> d e f &lt;/tt:text>&lt;/X2> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;X3>&nbsp;&nbsp;&nbsp;&nbsp; &lt;/X3> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;X4>&lt;tt:text>&nbsp;&nbsp;&nbsp;&nbsp; &lt;/tt:text>&lt;/X4> <br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/X0> <br>&nbsp;&nbsp;&lt;/tt:template> <br>&lt;/tt:transform></span>
+</dd></dl>
+<p><span class="h4">
+Embedded examples
+</span></p>
+<dl><dd>
+<span class="qtext">METHOD get_scarr BY DATABASE PROCEDURE FOR HDB <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LANGUAGE SQLSCRIPT <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USING scarr. <br>
+&nbsp;&nbsp;carriers&nbsp;&nbsp;= select * <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from scarr <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WHERE mandt&nbsp;&nbsp;= clnt; <br>ENDMETHOD.</span>
+</dd></dl>
+<dl><dd>
+<span class="qtext400">@AbapCatalog.sqlViewName: 'DEMO_CDS_PRJCTN' <br>@AccessControl.authorizationCheck: #NOT_REQUIRED <br>
+define view demo_cds_spfli <br> as select from <br> spfli <br> { <br> key spfli.carrid, <br> key spfli.connid, <br>
+ spfli.cityfrom, <br> spfli.cityto <br> }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp; <br>&nbsp;&nbsp; <br>&nbsp;&nbsp; <br></span>
+</dd></dl>
+<dl><dd>
+<span class="qtext400">&lt;?sap.transform simple?&gt; <br>&lt;tt:transform template="tmpl1" <br>&nbsp;&nbsp;xmlns:tt="http://www.sap.com/transformation-templates"&gt; <br>
+&nbsp;&nbsp;&lt;tt:root name="ROOT1"/&gt; <br>&nbsp;&nbsp;&lt;tt:root name="ROOT2"/&gt; <br>&nbsp;&nbsp;&lt;tt:template name="tmpl1"&gt; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;X0&gt; <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;X1&gt; <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tt:value ref="ROOT1" /&gt; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/X1&gt; <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;X2&gt; <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tt:value ref="ROOT2" /&gt; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/X2&gt; <br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/X0&gt; <br>&nbsp;&nbsp;&lt;/tt:template&gt; <br>&lt;/tt:transform&gt;</span>
+</dd></dl>
+<A name="@@ITOC@@ABENABAP_DOCU_FORMATS_7"></A>
+<p><span class="h2">
+Table
+</span></p>
+<table border>
+<tr>
+<td><span class="bold">Col1</span></td>
+<td><span class="bold">Col2</span></td>
+</tr>
+<tr>
+<td>blah</td>
+<td>blah</td>
+</tr>
+<tr>
+<td>blah</td>
+<td>blah</td>
+</tr>
+<tr>
+<td>blah</td>
+<td>blah</td>
+</tr>
+</table><br>
+<A name="@@ITOC@@ABENABAP_DOCU_FORMATS_8"></A>
+<p><span class="h2">
+Bulleted lists
+</span></p>
+<ul class="disc">
+<li>Text text text</li>
+</ul>
+<ul class="circlem2">
+<li>Text text text</li>
+</ul>
+<ul class="circlem2">
+<li>Text text text</li>
+</ul>
+<ul class="disc">
+<li>Text text text</li>
+</ul>
+<ul class="circlem2">
+<li>Text text text</li>
+</ul>
+<ul class="circlem2">
+<li>Text text text</li>
+</ul>
+<A name="@@ITOC@@ABENABAP_DOCU_FORMATS_9"></A>
+<p><span class="h2">
+Numbered lists
+</span></p>
+<ol>
+<li>
+Text text text
+</li>
+<li>
+Text text text
+</li>
+<li>
+Text text text
+</li>
+</ol>
+<A name="@@ITOC@@ABENABAP_DOCU_FORMATS_10"></A>
+<p><span class="h2">
+Figure
+</span></p>
+<p>
+
+</p>
+<span class="border1"><img src="abdoc_asxml.gif" width="00567" height="00226" alt="Figure"></span>
+<p>
+
+</p>
+<A name="@@ITOC@@ABENABAP_DOCU_FORMATS_11"></A>
+<p><span class="h2">
+Internal links
+</span></p>
+<p><span class="h3">
+Extras:
+</span></p>
+<P>
+   <A HREF="#!ABAP_ADDITION_1@1@" class="blue"> 1. <span class="qtext">... add1</span> </A> <br><br><A HREF="#!ABAP_ADDITION_2@2@" class="blue"> 2. <span class="qtext">... add2</span> </A> <br><br>
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Text text text <br><br>
+</p>
+<p><span class="h3">
+<A NAME="!ABAP_ADDITION_1@1@"></A> <span class="bold">Addition 1</span>
+</span></p>
+<P>
+<span class="qtext">... add1</span>   <br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Text text text <br><br>
+</p>
+<p><span class="h3">
+<A NAME="!ABAP_ADDITION_2@2@"></A> <span class="bold">Addition 2</span>
+</span></p>
+<P>
+<span class="qtext">... add2</span>   <br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Text text text
+</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

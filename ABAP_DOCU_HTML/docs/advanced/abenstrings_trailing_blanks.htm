@@ -1,0 +1,197 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENSTRINGS_TRAILING_BLANKS -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="Notes on Working with Strings">
+<title>
+Notes on Working with Strings - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenstrings_trailing_blanks.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenstrings_trailing_blanks.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 754, &copy;Copyright 2025 SAP SE. All rights reserved.</p>
+<span class="path">
+</span>
+<p><span class="h1">
+Notes on Working with Strings
+</span></p>
+<p>
+In the current release it has not been possible to fully complete the implementation of strings. Especially the handling of blank characters at the end of a string has not been finalized for a number of ABAP statements.
+</p>
+<p>
+For the operand positions in <span class="italic">italics</span>  of the following ABAP statements,
+blank characters at the end of strings are not taken into account. This may change in the next release. Therefore strings with blank characters at the end should not be used in these positions. <br>
+</p>
+<dl><dd>
+<span class="qtext">ASSIGN f TO &lt;fs> TYPE</span><span class="qtext"><span class="italic">type</span></span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">ASSIGN TABLE FIELD (</span><span class="qtext"><span class="italic">f</span></span><span class="qtext">)</span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">ASSIGN (</span><span class="qtext"><span class="italic">f</span></span><span class="qtext">) TO &lt;fs></span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">ASSIGN LOCAL COPY OF MAIN TABLE FIELD (</span><span class="qtext"><span class="italic">f</span></span><span class="qtext">) TO &lt;fs></span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">ASSIGN COMPONENT</span><span class="qtext"><span class="italic">name</span></span><span class="qtext"> OF STRUCTURE struc TO &lt;fs></span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">ASSIGN LOCAL COPY OF (</span><span class="qtext"><span class="italic">f</span></span><span class="qtext">) TO &lt;fs></span> <br>
+</dd></dl>
+<dl><dd>
+<span class="qtext">CALL SELECTION-SCREEN</span><span class="qtext"><span class="italic">scr</span></span><span class="qtext"> USING SELECTION-SET</span><span class="qtext"><span class="italic">set</span></span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">CLOSE DATASET</span><span class="qtext"><span class="italic">dsn</span></span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">CREATE OBJECT</span><span class="qtext"><span class="italic">ref</span></span><span class="qtext"> TYPE (</span><span class="qtext"><span class="italic">class</span></span><span class="qtext">)</span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">CREATE DATA dref TYPE (</span><span class="qtext"><span class="italic">type</span></span><span class="qtext">)</span> <br>
+</dd></dl>
+<dl><dd>
+<span class="qtext">DELETE FROM dbtab WHERE ... <br>&nbsp;&nbsp;(valid for </span><span class="qtext"><span class="italic">all strings in the WHERE clause</span></span><span class="qtext">)</span> <br>
+</dd></dl>
+<dl><dd>
+<span class="qtext">EDITOR-CALL FOR REPORT</span><span class="qtext"><span class="italic">prog</span></span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">EDITOR-CALL FOR itab TITLE</span><span class="qtext"><span class="italic">text</span></span> <br>
+</dd></dl>
+<dl><dd>
+<span class="qtext">GENERATE DYNPRO ... ID</span><span class="qtext"><span class="italic">id</span></span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">GENERATE REPORT</span><span class="qtext"><span class="italic">prog</span></span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">GENERATE SUBROUTINE POOL itab NAME</span><span class="qtext"><span class="italic">name</span></span> <br>
+</dd></dl>
+<dl><dd>
+<span class="qtext">IMPORT DYNPRO ... ID</span><span class="qtext"><span class="italic">id</span></span> <br>
+</dd></dl>
+<dl><dd>
+<span class="qtext">MESSAGE xnnn WITH</span><span class="qtext"><span class="italic">f1</span></span><span class="qtext"> ...</span><span class="qtext"><span class="italic">f4</span></span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">MESSAGE ID id TYPE</span><span class="qtext"><span class="italic">mtype</span></span><span class="qtext"> NUMBER</span><span class="qtext"><span class="italic">n</span></span> <br>
+</dd></dl>
+<dl><dd>
+<span class="qtext">NEW-PAGE PRINT ON ...&nbsp;&nbsp;(valid for</span><span class="qtext"><span class="italic">all additions</span></span><span class="qtext">)</span> <br>
+</dd></dl>
+<dl><dd>
+<span class="qtext">OPEN DATASET dsn ...</span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">&nbsp;&nbsp;... TYPE</span><span class="qtext"><span class="italic">c</span></span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">&nbsp;&nbsp;... MESSAGE</span><span class="qtext"><span class="italic">m</span></span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">&nbsp;&nbsp;... FILTER</span><span class="qtext"><span class="italic">f</span></span> <br>
+</dd></dl>
+<dl><dd>
+<span class="qtext">PERFORM (</span><span class="qtext"><span class="italic">form</span></span><span class="qtext">)</span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">&nbsp;&nbsp;... IN PROGRAM (</span><span class="qtext"><span class="italic">prog</span></span><span class="qtext">)</span> <br>
+</dd></dl>
+<dl><dd>
+<span class="qtext">SET PF-STATUS</span><span class="qtext"><span class="italic">pfstat</span></span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">&nbsp;&nbsp;... EXCLUDING</span><span class="qtext"><span class="italic">f</span></span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">&nbsp;&nbsp;... OF PROGRAM</span><span class="qtext"><span class="italic">prog</span></span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">SET TITLEBAR</span><span class="qtext"><span class="italic">title</span></span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">&nbsp;&nbsp;... OF PROGRAM</span><span class="qtext"><span class="italic">prog</span></span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">SET USER-COMMAND</span><span class="qtext"><span class="italic">cmd</span></span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">SUBMIT&nbsp;&nbsp;rep ... TO SAP-SPOOL ...&nbsp;&nbsp;(gilt f&#x00FC;r</span><span class="qtext"><span class="italic">alle Zus&#x00E4;tze</span></span><span class="qtext">)</span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">SUBMIT rep ... WITH FREE SELECTIONS</span><span class="qtext"><span class="italic">texpr</span></span> <br>
+</dd></dl>
+<dl><dd>
+<span class="qtext">TRANSFER f TO</span><span class="qtext"><span class="italic">dsn</span></span> <br>
+</dd></dl>
+<dl><dd>
+<span class="qtext">UPDATE dbtab WHERE ... <br>&nbsp;&nbsp;(valid for</span><span class="qtext"><span class="italic">all strings in the WHERE clause</span></span><span class="qtext">)</span> <br>
+</dd></dl>
+<dl><dd>
+<span class="qtext">WRITE ...</span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">&nbsp;&nbsp;... CURRENCY</span><span class="qtext"><span class="italic">w</span></span>
+</dd></dl>
+<dl><dd>
+<span class="qtext">&nbsp;&nbsp;... UNIT</span><span class="qtext"><span class="italic">u</span></span> <br>
+</dd></dl>
+<br>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

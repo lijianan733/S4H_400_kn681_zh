@@ -1,0 +1,174 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENRFC_SERVER_PGM -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="ABAP server program does not run">
+<title>
+ABAP server program does not run - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenrfc_server_pgm.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenrfc_server_pgm.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 754, &copy;Copyright 2025 SAP SE. All rights reserved.</p>
+<span class="path">
+</span>
+<A name="@@ITOC@@ABENRFC_SERVER_PGM_1"></A>
+<p><span class="h2">
+ABAP server program does not run
+</span></p>
+<p>
+An RFC server program is a program that uses the SAP RFC interface and is started from an <a href="javascript:call_link('abensap_nw_abap_glosry.htm')" class="grey" title="词汇表条目">AS ABAP</a> using <span class="qtext">CALL FUNCTION ...</span>.
+</p>
+<A name="@@ITOC@@ABENRFC_SERVER_PGM_2"></A>
+<p><span class="h3">
+Cause and Conditions
+</span></p>
+<p>
+There are various possible causes, depending on the program:
+</p>
+<ul class="circlem2">
+<li>Wrong or incomplete entries in SM59 (parameters of the <a href="javascript:call_link('abendestination_glosry.htm')" class="grey" title="词汇表条目">RFC destination</a>)</li>
+</ul>
+<ul class="circlem2">
+<li>Network problems</li>
+</ul>
+<ul class="circlem2">
+<li>Missing authorizations</li>
+</ul>
+<ul class="circlem2">
+<li>Error in the RFC server program</li>
+</ul>
+<A name="@@ITOC@@ABENRFC_SERVER_PGM_3"></A>
+<p><span class="h3">
+Solution
+</span></p>
+<p>
+The following checklist helps to identify problems with RFC server programs:
+</p>
+<ul class="disc">
+<li>Settings in SM59:</li>
+</ul>
+<ul class="circlem2">
+<li>The destination must be entered in transaction SM59 with type T.</li>
+</ul>
+<ul class="circlem2">
+<li>If possible, specify a full path for the program you want to start.</li>
+</ul>
+<ul class="circlem2">
+<li>Did you save the destination?</li>
+</ul>
+<ul class="disc">
+<li>Configuration at operating system level:</li>
+</ul>
+<p>
+The following points depend on the host name in the destination:
+</p>
+<ul class="circlem2">
+<li>You have entered a name for the host name (radio button 'explicit' in Release 3.0), or you have stored a non-standard gateway in the gateway options: <br>
+In this case, the program is started by the standard gateway or the explicitly specified gateway (gwrd)
+using 'Remote shell'. Ensure that the specified host can be reached from the host of the gateway process. Enter the following on the gateway host: <br>
+                 /etc/ping &lt;host name>     or ,,ping &lt;host name></li>
+</ul>
+<p>
+              For a program to be started on another host using 'Remote shell' the user ID of the gateway
+process must be known in the target system, and the HOME directory of the user in the target system
+must have a file .rhosts. This file should contain the name of the calling host. You can test this by
+logging onto the host containing the gateway process under the name user ID used by the process and entering the following command: <br>
+                      remsh &lt;host name> &lt;program name>. The &lt;host name> and &lt;program name>
+must be the same as in SM59.             If you call an RFC server program without parameters, the call of RfcAccept always returns an error code (RFC_HANDLE_NULL) and the program terminates immediately.
+</p>
+<ul class="circlem2">
+<li>There is no entry in 'Host Name' (or, in Release 3.0, you selected 'Server') : <br>In this case, the program is started from the
+<a href="javascript:call_link('abenapplication_server_glosry.htm')" class="grey" title="词汇表条目">AS Instance</a>.               Make sure that it can be reached from this server. <br>
+Ensure that the AS Instance has the authorization to start the program.        Check this by logging
+on under the user ID of the AS Instance (usually c11adm). Go to the 'work' directory of the AS Instance
+(/usr/sap/.../D.../work) and try to start the RFC server program manually.               As above: If
+an RFC server program is called without parameters, the RfcAccept call always produces an error code <br> (RFC_HANDLE_NULL) and the program</li>
+</ul>
+<p>
+Example would have to terminate immediately).
+</p>
+<ul class="circlem2">
+<li>The radio button 'User' can be selected in 3.0. <br>In this case, the program is started by 'SAPgui', that is, under the user ID and environment of the user. <br>
+* Ensure that the program can be reached from 'sapgui'/'saptemu'. <br>              * Ensure that 'sapgui has the authorization to start the program. <br>
+              * Try to start the RFC server program from your own user environment.</li>
+</ul>
+<ul class="disc">
+<li>Problems in the RFC server program itself</li>
+</ul>
+<ul class="circlem2">
+<li>You can catch the 'stderr' output of the server program by entering a master program instead of the server program as the destination. The
+<a href="javascript:call_link('abenframe_program_glosry.htm')" class="grey" title="词汇表条目">frame program</a> starts the actual
+server program using the same command line, and routes the standard output of the server program to a file. <br>
+          Example: <br>          RFC server program /xxx/xxxx <br>          The C shell script is called however (do not forget to specify the shell in the first line) : <br>
+          #!/bin/csh <br>          date >> /tmp/rfclog <br>          /xxx/xxxx $* >>&amp; /tmp/rfclog <br>
+          echo $status >>&amp; /tmp/rfclog <br> <br>          You can the use log file /tmp/rfclog to further analyze the error.</li>
+</ul>
+<ul class="circlem2">
+<li>You can also activate the trace switch in the
+<a href="javascript:call_link('abendestination_glosry.htm')" class="grey" title="词汇表条目">RFC destination</a> (do not forget to
+save). Then, the RFC server program writes a file 'dev_rfc' to its current directory, containing all of the data, operations, and errors that occurred.</li>
+</ul>
+<ul class="circlem2">
+<li>Debugging an RFC server program:          You can analyze an RFC server program with a C debugger such as dbx, xdb or codeview. To do this, proceed as follows: <br>
+In transaction SM59 enter a program for the destination that writes the command line passed to a defined file: <br>
+           Example (C shell) <br> <br>           #!/bin/csh <br>           echo $* > /tmp/rfc <br> <br>,,Call the C debugger with your RFC server program, xdb &lt;program name>
+ for example, and set a break point after the RfcAccept call. <br>Start the calling ABAP program. This
+results in the master program above writing its command line to the output file (/tmp/rfc in our example). <br>Read this file and start the RFC server program loaded into the debugger with the same command line.</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

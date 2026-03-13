@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+  <meta>
+    <project coordinator="ABAP Keyword Documentation" name="ABAP Keyword Documentation"/>
+    <deliverable label="ABAP" language="en-US"
+                 lastmodified="2025-11-28 01:49:24" lastmodifiedby="KN681"
+                 loio="abapdocu_754_index_htm" owner="KN681" product="ABAP"
+                 rootfile="index.htm" shortdesc="" transtype="hp.sap" version="7.54">
+      <outputmetas>
+        <outputmeta>
+          <param name="product" value="ABAP"/>
+          <param name="product_name" value="ABAP"/>
+          <param name="product_sapid" value="ABAP"/>
+          <param name="version" value="7.54"/>
+          <param name="version_name" value="7.54"/>
+        </outputmeta>
+      </outputmetas>
+    </deliverable>
+  </meta>
+  <mapref dita="buildable-map" label="ABAP" lastmodified="2025-11-28 01:49:24"
+          lastmodifiedby="ABAP Keyword Documentation" loio="abapdocu_754_index_htm" xray_version="">
+    <sap-map-meta>
+      <othermeta content="Development" name="content category" />
+    </sap-map-meta>
+  </mapref>
+  <build>
+    <output>
+      <rootpage>index.htm</rootpage>
+    </output>
+  </build>
+</metadata>

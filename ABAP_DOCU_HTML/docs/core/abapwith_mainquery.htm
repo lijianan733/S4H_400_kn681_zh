@@ -1,0 +1,129 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABAPWITH_MAINQUERY -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="WITH - mainquery_clauses">
+<title>
+WITH - mainquery_clauses - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abapwith_mainquery.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abapwith_mainquery.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 754, &copy;Copyright 2025 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP &#x2212; Reference</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_language_external_data.htm')" class="blue">Processing External Data</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_sql.htm')" class="blue">ABAP Database Access</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopensql.htm')" class="blue">ABAP SQL</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopen_sql_reading.htm')" class="blue">ABAP SQL - Reads</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abapwith.htm')" class="blue">WITH</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+WITH - mainquery_clauses
+</span></p>
+<A name="@@ITOC@@ABAPWITH_MAINQUERY_1"></A>
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext">... <i class=bn>[</i><a href="javascript:call_link('abapselect_single.htm')" class="blue">SINGLE <i class=bn>[</i>FOR UPDATE<i class=bn>]</i></a><i class=bn>]</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>{</i> <a href="javascript:call_link('abapfrom_clause.htm')" class="blue">FROM</a> source <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:call_link('abapfields_clause.htm')" class="blue">FIELDS</a> <a href="javascript:call_link('abapselect_clause.htm')" class="blue">select_clause</a> <i class=bn>}</i> <br>
+&nbsp;&nbsp;<i class=bn>|</i> <i class=bn>{</i> <a href="javascript:call_link('abapselect_clause.htm')" class="blue">select_clause</a> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:call_link('abapfrom_clause.htm')" class="blue">FROM</a> source <i class=bn>}</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>[</i><a href="javascript:call_link('abapwhere.htm')" class="blue">WHERE</a> sql_cond<i class=bn>]</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>[</i><a href="javascript:call_link('abapgroupby_clause.htm')" class="blue">GROUP BY</a> group<i class=bn>]</i> <i class=bn>[</i>
+<a href="javascript:call_link('abaphaving_clause.htm')" class="blue">HAVING</a> group_cond<i class=bn>]</i> <br>&nbsp;&nbsp;
+&nbsp;<i class=bn>[</i><a href="javascript:call_link('abaporderby_clause.htm')" class="blue">ORDER BY</a> sort_key<i class=bn>]</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>[</i><a href="javascript:call_link('abenosql_db_hints.htm')" class="blue">db_hints</a><i class=bn>]</i> ...</span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<P>
+Possible <a href="javascript:call_link('abenselect_clauses.htm')" class="blue">clauses and additions</a> of the main query of
+a <a href="javascript:call_link('abapwith.htm')" class="blue"><span class="qtext">WITH</span></a> statement. All the same clauses
+are possible as for a standalone a <a href="javascript:call_link('abapselect.htm')" class="blue"><span class="qtext">SELECT</span></a>
+statement except for <a href="javascript:call_link('abenwhere_logexp_itab.htm')" class="blue"><span class="qtext">FOR ALL ENTRIES</span></a>,
+and they have the same effect. Under the same circumstances, as in the case of the standalone <a href="javascript:call_link('abapselect.htm')" class="blue">
+<span class="qtext">SELECT</span></a> statement, a <span class="qtext">SELECT</span> loop is opened. In this case, this has to be closed with <a href="javascript:call_link('abapendwith.htm')" class="blue"><span class="qtext">ENDWITH</span></a>.
+</P>
+<P>
+If an internal table <a href="javascript:call_link('abapselect_data_source.htm')" class="blue"><span class="qtext">@itab</span></a>
+with elementary row type is accessed in the <a href="javascript:call_link('abapfrom_clause.htm')" class="blue"><span class="qtext">FROM</span></a>
+clause of a common table expression, the <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">SELECT</span> list</a> cannot be <span class="qtext">*</span> or contain <span class="qtext">data_source~*</span>.
+</P>
+<p><span class="h4">
+Example
+</span></p>
+<P>
+The example shows a <span class="qtext">WITH</span> statement, whose main query creates a tabular result
+set. Since the example writes to an internal table <span class="qtext">itab</span>, no <span class="qtext">SELECT</span> loop is opened.
+</P>
+<p class="qtextml1">
+<span class="qtext">
+WITH <br>&nbsp;&nbsp;+carriers AS ( SELECT FROM scarr <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FIELDS carrid, carrname ) <br>
+&nbsp;&nbsp;SELECT FROM spfli AS s <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INNER JOIN +carriers AS c <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ON s~carrid = c~carrid <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FIELDS c~carrname, s~connid <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WHERE s~carrid = 'UA' <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTO TABLE @DATA(itab) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UP TO 10 ROWS. <br> <br>&nbsp;&nbsp;cl_demo_output=>display( itab ).
+</span>
+</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

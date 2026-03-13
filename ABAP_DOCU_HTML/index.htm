@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Frameset//EN" "http://www.w3.org/TR/REC-html40/frameset.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="ABAP Documentation">
+<meta name="keywords" content="ABAP, Keyword Documentation">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<link rel="shortcut icon" href="assets/images/ABAPIcon.ico">
+<link rel="icon" href="assets/images/ABAPIcon.ico" type="image/ico">
+<title>ABAP Keyword Documentation</title>
+<script type="text/javascript" src="functions.js"></script>
+<SCRIPT type="text/javascript">
+function _onload()
+{
+  var args = get_array_of_parameters();
+  window.frames["treeframe"].window.location = "abap_docu_tree.htm?file=" + args["file"];
+  if( args["file"] ) file = args["file"];
+  else file = "abenabap.htm";
+  var resolved = (typeof resolvePath === 'function') ? resolvePath(file) : file;
+  window.frames["basefrm"].window.location =  resolved;
+}
+function get_array_of_parameters()
+{
+  var arr1 = Array();
+  var arr2 = window.location.search.substr(1).split( "&" );
+  for( x in arr2 )
+  {
+    z = arr2[x].split( "=" );
+    arr1[ z[0] ] = z[1];
+  }
+  return arr1 ;
+}
+</SCRIPT>
+</head>
+<frameset cols="450,*" onload="_onload()">
+<frame name="treeframe">
+<frame name="basefrm">
+</frameset>
+</html>

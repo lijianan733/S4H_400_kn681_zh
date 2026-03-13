@@ -1,0 +1,92 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENDATA_OBJECTS_VALIDITY -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="Lifetime of Data Objects">
+<title>
+Lifetime of Data Objects - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abendata_objects_validity.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abendata_objects_validity.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 754, &copy;Copyright 2025 SAP SE. All rights reserved.</p>
+<span class="path">
+</span>
+<p><span class="h1">
+Lifetime of Data Objects
+</span></p>
+<p>
+The <span class="bold">validity</span> and <span class="bold">lifetime</span> of data objects can be divided into static, automatic, and dynamic validity and lifetime as follows:
+</p>
+<ul class="disc">
+<li>A data object has <span class="bold">static validity</span>, that is, its lifetime is bound to that of the program, if it is created in a program, or within a
+<a href="javascript:call_link('abenprocedure_glosry.htm')" class="grey" title="词汇表条目">procedure</a>
+using the <a href="javascript:call_link('abapstatics.htm')" class="blue"><span class="qtext">STATICS</span></a> statement. Data objects with static validity are created in a global
+<a href="javascript:call_link('abendata_area_glosry.htm')" class="grey" title="词汇表条目">data area</a>.</li>
+</ul>
+<ul class="disc">
+<li>A data object has <span class="bold">automatic validity</span>, that is, its lifetime is bound to
+the activity of the procedure in which it was created, if it is created in a procedure with a declarative
+statement other than <span class="qtext">STATICS</span>. Data objects with automatic validity are created
+new on the stack each time the procedure is called in which they are defined. They are released automatically when the procedure ends (hence the term "automatic validity").</li>
+</ul>
+<ul class="disc">
+<li>A data object has <span class="bold">dynamic validity</span>, that is, a lifetime controlled by
+the program, if it is created and deleted by operational statements in a program. In ABAP, the contents of internal tables and strings have dynamic validity. These data objects are created on the heap.</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>
