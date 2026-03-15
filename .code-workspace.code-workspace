@@ -8,5 +8,22 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"abapfs.subagents.models": {
+			"abap-discoverer": "Raptor mini",
+			"abap-reader": "Raptor mini",
+			"abap-creator": "Raptor mini",
+			"abap-visualizer": "Raptor mini",
+			"abap-documenter": "Raptor mini",
+			"abap-usage-analyzer": "GPT-4o",
+			"abap-quality-checker": "GPT-5 mini",
+			"abap-historian": "GPT-4o",
+			"abap-debugger": "GPT-4o",
+			"abap-troubleshooter": "GPT-4o",
+			"abap-data-analyst": "GPT-4o",
+			"abap-orchestrator": "GPT-4.1",
+			"abap-code-reviewer": "GPT-4.1"
+		},
+		"abapfs.subagents.enabled": false
+	}
 }

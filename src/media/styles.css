@@ -1,0 +1,23 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', sans-serif;
+  margin: 16px;
+}
+
+h1 {
+  font-size: 1.6em;
+  margin-bottom: 0.5em;
+}
+
+button {
+  padding: 8px 14px;
+  font-size: 1em;
+  border-radius: 4px;
+  border: 1px solid #888;
+  background: #1e90ff;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1477d4;
+}
