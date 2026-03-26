@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "lastModified": "2026-03-26T02:12:51.715Z",
+  "lastModifiedBy": "user",
+  "tasks": [
+    {
+      "id": "task-1774427847318-rosy6",
+      "description": "循环输出当前日期和时间",
+      "connectionId": "mysap",
+      "enabled": false,
+      "addedAt": "2026-03-25T08:37:27.318Z",
+      "addedBy": "user",
+      "removeWhenDone": false,
+      "checkInstructions": [
+        "获取当前系统日期和时间。",
+        "按格式 YYYY-MM-DD HH:mm:ss (timezone) 输出。",
+        "每次检查周期都通知一次当前时间。"
+      ],
+      "priority": "medium",
+      "category": "custom",
+      "cooldownMinutes": 1,
+      "checkCount": 0,
+      "reminderOnly": false,
+      "reason": "验证checkInstructions中文可用",
+      "lastNotifiedAt": "2026-03-26T02:03:32Z",
+      "lastNotifiedFindings": "Checked current system time: 2026-03-26 02:05:00 (UTC)",
+      "lastCheckedAt": "2026-03-26T02:06:43.080Z",
+      "lastResult": "Checked current system time: 2026-03-26 02:03:32 (UTC)"
+    }
+  ]
+}
