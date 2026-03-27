@@ -8,7 +8,16 @@
 			"path": "."
 		}
 	],
-	"settings": {
-		"powershell.cwd": "mysap(ABAP)"
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"type": "abap",
+				"request": "attach",
+				"name": "mysap(ABAP)",
+				"connId": "${command:abapfs.pickAdtRootConn}",
+				"root": "${workspaceFolder:mysap(ABAP)}"
+			}
+		]
 	}
 }
