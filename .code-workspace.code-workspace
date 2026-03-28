@@ -1,13 +1,4 @@
 {
-	"folders": [
-		{
-			"name": "mysap(ABAP)",
-			"uri": "adt://mysap"
-		},
-		{
-			"path": "."
-		}
-	],
 	"settings": {
 		"abapfs.subagents.models": {
 			"abap-discoverer": "Raptor mini",
