@@ -1,6 +1,19 @@
 {
   "version": 1,
-  "lastModified": "2026-03-28T12:56:16.770Z",
+  "lastModified": "2026-03-29T08:19:38.037Z",
   "lastModifiedBy": "user",
-  "tasks": []
+  "tasks": [
+    {
+      "action": "add_task",
+      "description": "每分钟输出当前时间",
+      "reason": "用户要求循环执行，定期输出当前时间",
+      "category": "reminder",
+      "priority": "low",
+      "enabled": false,
+      "reminderOnly": false,
+      "removeWhenDone": false,
+      "connectionId": "mysap",
+      "modifiedBy": "user"
+    }
+  ]
 }
