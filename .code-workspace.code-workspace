@@ -19,5 +19,8 @@
 				"root": "${workspaceFolder:mysap(ABAP)}"
 			}
 		]
+	},
+	"settings": {
+		"git.ignoreLimitWarning": true
 	}
 }
