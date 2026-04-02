@@ -21,6 +21,7 @@
 		]
 	},
 	"settings": {
-		"git.ignoreLimitWarning": true
+		"git.ignoreLimitWarning": true,
+		"github.copilot.chat.virtualTools.threshold": 0
 	}
 }
