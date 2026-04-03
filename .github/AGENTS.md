@@ -1,5 +1,9 @@
 # AGENTS.md - Copilot Agent Customization Template
 
+> **🤖 对于 Copilot 的作用（必读）**
+> **机制**：作为系统架构拓扑和扩展（skills/prompts/agents/hooks）的“索引地图（Map）”。
+> **效果**：它让 AI 在遇到复杂需求时，先拥有全局视野。它知道当前项目目前定义了多少可调用的指令和代码骨架，并依照第 7 节中的说明来重用已有的 ABAP 代码（比如现成的 ALV `REUSE_ALV_GRID_DISPLAY_LVC` 实现方案），避免从零瞎编或偏离技术路线。
+
 > 说明：此文件是 workspace 级别 agent-cheat sheet，用于快速找到/创建自定义 agent/instructions/prompt/skill 资源。
 
 ## 1. 目标
@@ -77,5 +81,14 @@ steps:
 - 数据字典
 - 性能
 
-``` 
+## 7. 本仓库项目说明（已实现/待完善）
+- ABAP 示例程序：`Z260403_REPORT_1.prog.abap`，实现了 OOP 航班查询 + `REUSE_ALV_GRID_DISPLAY_LVC`。
+- 自动 fieldcat 生成：使用 RTTI 根据结果表动态创建 `lvc_t_fcat`。
+- 文档资产：`Copilot-Chat-Commands.md`（命令及流程说明）、`AI_test/AI代码生成注意点.md`。
+- 变更追踪提示：CDHDR/CDPOS 处理说明已写在 `Copilot-Chat-Commands.md`，推荐 SQL/事务监控。
+- 现有命令集：`/init`, `/help`, `/reset`, `/feedback`, `/todo`, `/config`, `/run`, `/exec`; 以及`/create-prompt`, `/create-instructions`, `/create-skill`, `/create-agent`, `/create-hook`, `/summarize-github-issue-pr`, `/suggest-fix-issue`, `/form-github-search-query`, `/address-pr-comments`，和 ABAP-specific skills (clean-abap/abap-code-writing/abap-performance-ecc/hana/abap-research/sap-system-personality-report/sap-customizing)。
+- 推荐流程：先 `/init`；后 `/todo` 拆任务；`abap_activate`/`run_unit_tests` 验证；最后 `/reset`。
+- 增强建议：可以继续补充 `.github/prompts`、`.github/agents`、`.github/skills` 项目级最佳实践方案。
+
+```
 
