@@ -1,0 +1,837 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABAPINTO_CLAUSE -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="SELECT - INTO, APPENDING">
+<title>
+SELECT - INTO, APPENDING - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abapinto_clause.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abapinto_clause.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 754, &copy;Copyright 2025 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP &#x2212; Reference</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_language_external_data.htm')" class="blue">Processing External Data</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_sql.htm')" class="blue">ABAP Database Access</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopensql.htm')" class="blue">ABAP SQL</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopen_sql_reading.htm')" class="blue">ABAP SQL - Reads</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenselect_clauses.htm')" class="blue">SELECT clauses</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@INTO@@SELECT@@"></A>
+<p><span class="h1">
+SELECT - INTO, APPENDING <br><br>
+</span></p>
+<P>
+<a href="javascript:call_link('abapselect_shortref.htm')" class="blue">Quick Reference</a> <br><br>
+</P>
+<p><span class="h2">
+<span class="bold">Syntax</span>
+</span></p>
+<P>
+<span class="qtext">... <i class=bn>{</i> INTO</span> <br><span class="qtext">&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;<i class=bn>{</i> <i class=bn>{</i><i class=bn>[</i>CORRESPONDING FIELDS OF<i class=bn>]</i> <i class=bn>[</i>
+<a href="javascript:call_link('abapselect_into_new.htm')" class="blue">NEW</a><i class=bn>]</i> @wa <i class=bn>[</i><a href="javascript:call_link('abapselect_indicators.htm')" class="blue">indicators</a><i class=bn>]</i><i class=bn>}</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>|</i>&nbsp;&nbsp;(<i class=bn>[</i>
+<a href="javascript:call_link('abapselect_into_new.htm')" class="blue">NEW</a><i class=bn>]</i> @dobj1, <i class=bn>[</i>
+<a href="javascript:call_link('abapselect_into_new.htm')" class="blue">NEW</a><i class=bn>]</i> @dobj2, ...) <i class=bn>}</i> <i class=bn>}</i></span> <br>
+<span class="qtext">&nbsp;&nbsp;<i class=bn>|</i> <i class=bn>{</i> INTO<i class=bn>|</i>APPENDING</span> <br>
+<span class="qtext">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class=bn>[</i>CORRESPONDING FIELDS OF<i class=bn>]</i> TABLE <i class=bn>[</i>
+<a href="javascript:call_link('abapselect_into_new.htm')" class="blue">NEW</a><i class=bn>]</i> @itab <i class=bn>[</i>
+<a href="javascript:call_link('abapselect_indicators.htm')" class="blue">indicators</a><i class=bn>]</i> <i class=bn>[</i>PACKAGE SIZE n<i class=bn>]</i> <i class=bn>}</i></span> <br>
+<span class="qtext">&nbsp;&nbsp;<i class=bn>|</i> <i class=bn>{</i> INTO <i class=bn>[</i>
+<a href="javascript:call_link('abapselect_into_new.htm')" class="blue">NEW</a><i class=bn>]</i> @DATA(wa) <i class=bn>[</i>
+<a href="javascript:call_link('abapselect_indicators.htm')" class="blue">indicators</a><i class=bn>]</i> <i class=bn>}</i></span> <br>
+<span class="qtext">&nbsp;&nbsp;<i class=bn>|</i> <i class=bn>{</i> INTO TABLE <i class=bn>[</i>
+<a href="javascript:call_link('abapselect_into_new.htm')" class="blue">NEW</a><i class=bn>]</i> @DATA(itab) <i class=bn>[</i>
+<a href="javascript:call_link('abapselect_indicators.htm')" class="blue">indicators</a><i class=bn>]</i> <i class=bn>[</i>PACKAGE SIZE n<i class=bn>]</i> <i class=bn>}</i></span> <br>
+<span class="qtext">&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>[</i> <a href="javascript:call_link('abapselect_extended_result.htm')" class="blue">extended_result</a> <i class=bn>]</i></span> <br>
+<span class="qtext">&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>[</i> <a href="javascript:call_link('abapselect_creating.htm')" class="blue">creating</a> <i class=bn>]</i> ...&nbsp;&nbsp;.</span> <br><br>
+</P>
+<p><span class="h2">
+Alternatives:
+</span></p>
+<P>
+   <A HREF="#!ABAP_ALTERNATIVE_1@1@" class="blue"> 1. <span class="qtext">... INTO <i class=bn>[</i>CORRESPONDING FIELDS OF<i class=bn>]</i> <i class=bn>[</i>NEW<i class=bn>]</i> @wa</span> </A> <br>
+<br><A HREF="#!ABAP_ALTERNATIVE_2@2@" class="blue"> 2. <span class="qtext">... INTO (<i class=bn>[</i>NEW<i class=bn>]</i> @dobj1, <i class=bn>[</i>NEW<i class=bn>]</i> @dobj2, ... )</span> </A> <br>
+<br><A HREF="#!ABAP_ALTERNATIVE_3@3@" class="blue"> 3. <span class="qtext">... INTO<i class=bn>|</i>APPENDING <i
+class=bn>[</i>CORRESPONDING FIELDS OF<i class=bn>]</i> TABLE <i class=bn>[</i>NEW<i class=bn>]</i> @itab <i class=bn>[</i>PACKAGE SIZE n<i class=bn>]</i></span> </A> <br>
+<br><A HREF="#!ABAP_ALTERNATIVE_4@4@" class="blue"> 4. <span class="qtext">... INTO <i class=bn>[</i>NEW<i class=bn>]</i> @DATA(wa)</span> </A> <br>
+<br><A HREF="#!ABAP_ALTERNATIVE_5@5@" class="blue"> 5. <span class="qtext">... INTO TABLE <i class=bn>[</i>NEW<i class=bn>]</i> @DATA(itab) <i class=bn>[</i>PACKAGE SIZE n<i class=bn>]</i></span> </A> <br><br>
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<P>
+The information after <span class="qtext">INTO</span> or <span class="qtext">APPENDING</span> specifies
+to which data objects the results set of a <a href="javascript:call_link('abapselect.htm')" class="blue"><span class="qtext">SELECT</span></a>
+statement, <a href="javascript:call_link('abapwith.htm')" class="blue"><span class="qtext">WITH</span></a>
+statement or a <a href="javascript:call_link('abapfetch.htm')" class="blue"><span class="qtext">FETCH</span></a> statement is assigned. It is possible to specify
+</P>
+<ul class="disc">
+<li>
+a single work area <span class="qtext">wa</span> after <span class="qtext">INTO</span>,
+<br><br></li>
+<li>
+a list (in parentheses) of data objects <span class="qtext">dobj1, dobj2 ...</span> after <span class="qtext">INTO</span>,
+<br><br></li>
+<li>
+an internal table <span class="qtext">itab</span> after <span class="qtext">INTO</span> or <span class="qtext">APPENDING</span>
+<br></li>
+</ul>
+<P>
+ As a <a href="javascript:call_link('abenopen_sql_host_variables.htm')" class="blue">host variable</a>. The
+<a href="javascript:call_link('abendeclaration_operator_glosry.htm')" class="grey" title="词汇表条目">declaration
+operator</a> <a href="javascript:call_link('abendata_inline.htm')" class="blue"><span class="qtext">DATA</span></a> can be used to perform appropriate
+<a href="javascript:call_link('abeninline_declaration_glosry.htm')" class="grey" title="词汇表条目">inline declarations</a>. The
+addition <a href="javascript:call_link('abapselect_into_new.htm')" class="blue"><span class="qtext">NEW</span></a> makes it possible to specify or declare suitable
+<a href="javascript:call_link('abendata_reference_variable_glosry.htm')" class="grey" title="词汇表条目">data reference variables</a>. In this case,
+<a href="javascript:call_link('abenanonymous_data_object_glosry.htm')" class="grey" title="词汇表条目">anonymous data objects</a> are generated as target areas.
+</P>
+<P>
+When field symbols or dereferenced reference variables are specified for the work area, individual data
+objects, or internal tables in a <span class="qtext">SELECT</span> loop closed using <a href="javascript:call_link('abapendselect.htm')" class="blue">
+<span class="qtext">ENDSELECT</span></a>, the data object that is the target of a field symbol or reference
+variable is identified precisely once, when the loop is entered. This data object is used as a target
+area in each loop pass. Any modifications to the assignment of a field symbol or reference variable within the loop are ignored.
+</P>
+<P>
+The addition <a href="javascript:call_link('abapselect_indicators.htm')" class="blue"><span class="qtext">INDICATORS</span></a> can be used to specify a
+<a href="javascript:call_link('abennull_indicator_glosry.htm')" class="grey" title="词汇表条目">null indicator</a>. The addition
+<a href="javascript:call_link('abapselect_extended_result.htm')" class="blue"><span class="qtext">extended_result</span></a> can be used to provide an extended result in a result object.
+</P>
+<P>
+If a <a href="javascript:call_link('abenlob_glosry.htm')" class="grey" title="词汇表条目">LOB</a> of the results set is associated with a
+<a href="javascript:call_link('abenlob_handle_glosry.htm')" class="grey" title="词汇表条目">LOB handle</a>,
+it may be necessary to use <a href="javascript:call_link('abapselect_creating.htm')" class="blue"><span class="qtext">creating</span></a> to specify whether a
+<a href="javascript:call_link('abendata_stream_glosry.htm')" class="grey" title="词汇表条目">data stream</a> or a <a href="javascript:call_link('abenlocator_glosry.htm')" class="grey" title="词汇表条目">locator</a> is being used.
+</P>
+<P>
+The <span class="qtext">INTO</span> clause must be the final clause of a
+<a href="javascript:call_link('abenmainquery_glosry.htm')" class="grey" title="词汇表条目">main query</a> and the additions <a href="javascript:call_link('abapselect_up_to_offset.htm')" class="blue">
+<span class="qtext">UP TO</span>, <span class="qtext">OFFSET</span></a>, a <a href="javascript:call_link('abapselect_additions.htm')" class="blue">
+<span class="qtext">abap_options</span></a> must be placed after the <span class="qtext">INTO</span> clause.
+</P>
+<p><span class="h4">
+Notes
+</span></p>
+<ul class="disc">
+<li>
+When specifying the data objects, there are no dynamic variants that correspond to the other additions.
+Instead, dynamically created data objects can be used (see the example for <a href="javascript:call_link('abapcreate_data_existing.htm')" class="blue"><span class="qtext">CREATE DATA</span></a>).
+<br><br></li>
+<li>
+Whether data should better be read into an internal table or a work area depends on the type of further
+processing: If data is required only once in a program, it should be imported into a work area, row
+by row, by a <span class="qtext">SELECT</span>. Reading data into an internal table requires more memory
+space (without compensating this disadvantage with a considerably higher reading speed). If, on the
+other hand, data is required many times in a program, it should be read into an internal table. The
+disadvantage of the increased memory requirement is more than compensated for here by the advantage of a once-only selection.
+<br><br></li>
+<li>
+If data is to be imported into an internal table, it is better to import it once into an internal table than to read it, row by row, into a work area and insert its content in the internal table.
+<br><br></li>
+<li>
+If individual columns are being read and the structure of the results set is known statically, it is
+recommended that a list of data objects or inline declarations are used instead of using the addition <span class="qtext">CORRESPONDING FIELDS</span>.
+<br><br></li>
+<li>
+If the addition <span class="qtext">INTO CORRESPONDING</span> is used and all the required information
+exists statically, the fields are assigned when the program is generated. Otherwise the fields are assigned
+once when the <span class="qtext">SELECT</span> statement is executed, which causes a slight increase in the required runtime.
+<br><br></li>
+<li>
+The addition <span class="qtext">INTO CORRESPONDING</span> modifies the actual <a href="javascript:call_link('abapselect_list.htm')" class="blue">
+<span class="qtext">SELECT</span> list</a> that is passed to the database and hence also the <span class="qtext">SELECT</span>
+statement. If one or more names match, all the columns for which there are no name matches are removed
+from the <span class="qtext">SELECT</span> list implicitly. If there are no name matches, none of the
+columns are removed. If <span class="qtext">*</span> is specified for the <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">SELECT</span> list</a>, it may be updated to a list of columns implicitly.
+<br><br></li>
+<li>
+The variants with the addition <span class="qtext">INTO CORRESPONDING FIELDS</span> run the risk of
+having target areas with more components than are actually filled. This should only be the case if the
+components that are not filled are then filled in the program. Otherwise appropriately sized work areas should be used to avoid a large amount of memory being filled by initial values (especially in internal tables).
+<br><br></li>
+<li>
+The statement <span class="qtext">SELECT</span> also has an obsolete
+<a href="javascript:call_link('abapselect_obsolete.htm')" class="blue">short form</a>, in which <span class="qtext">INTO</span> or <span class="qtext">APPENDING</span> can be omitted.
+<br><br></li>
+<li>
+Reference variables for LOB handles or LOB handle structures cannot currently be specified after the statement <span class="qtext">FETCH</span>.
+<br><br></li>
+<li>
+Host variables without the escape character <span class="qtext">@</span> are
+<a href="javascript:call_link('abenopen_sql_hostvar_obsolete.htm')" class="blue">obsolete</a>. The escape character <span class="qtext">@</span> must be specified in the
+<a href="javascript:call_link('abenopensql_strict_modes.htm')" class="blue">strict modes</a> of the syntax check from Release 7.40, SP05.
+<br><br></li>
+<li>
+Outside the <a href="javascript:call_link('abenopensql_strict_mode_750.htm')" class="blue">strict mode</a> of the syntax check from 7.50Release 7.50, the <span class="qtext">INTO</span> clause does not have to be the last clause of a
+<a href="javascript:call_link('abenmainquery_glosry.htm')" class="grey" title="词汇表条目">main query</a>. <br><br>
+<br></li>
+</ul>
+<A NAME="@@CORRESPONDING FIELDS OF@@SELECT INTO@@"></A>
+<p><span class="h2">
+<A NAME="!ABAP_ALTERNATIVE_1@1@"></A> <span class="bold">Alternative 1</span>
+</span></p>
+<P>
+<span class="qtext">... INTO <i class=bn>[</i>CORRESPONDING FIELDS OF<i class=bn>]</i> <i class=bn>[</i>NEW<i class=bn>]</i> @wa</span> <br><br><br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<P>
+If the addition <a href="javascript:call_link('abapselect_into_new.htm')" class="blue"><span class="qtext">NEW</span></a> is not specified, you can specify a data object as a host variable for <span class="qtext">wa</span> that must meet certain
+<a href="javascript:call_link('abenopen_sql_wa.htm')" class="blue">prerequisites</a> without <span class="qtext">CORRESPONDING
+FIELDS OF</span> being specified. If the addition <a href="javascript:call_link('abapselect_into_new.htm')" class="blue"><span class="qtext">NEW</span></a> is specified, you can specify a
+<a href="javascript:call_link('abendata_reference_variable_glosry.htm')" class="grey" title="词汇表条目">data reference variable</a> for <span class="qtext">wa</span> with which a corresponding
+<a href="javascript:call_link('abenanonymous_data_object_glosry.htm')" class="grey" title="词汇表条目">anonymous data object</a> is generated.
+</P>
+<P>
+If the results set consists of a single row, this row is assigned to <span class="qtext">wa</span> or
+the anonymous data object. If the results set has multiple rows, <span class="qtext">SELECT</span> must
+be followed by an <span class="qtext">ENDSELECT</span> statement and the results set is assigned to
+the work area <span class="qtext">wa</span> or the anonymous data object row by row and can be evaluated
+in the loop. After <span class="qtext">ENDSELECT</span>, the work area <span class="qtext">wa</span>
+or the anonymous data object contains the row that was assigned last. If used in the <a href="javascript:call_link('abapfetch.htm')" class="blue">
+<span class="qtext">FETCH</span></a> statement, a row is extracted at the current cursor position. If
+the result is empty, the work area remains unchanged. If a handleable exception is raised when the work area is filled, its content is undefined when the exception is handled.
+</P>
+<P>
+The rows of the results set are assigned as follows, based on the <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">SELECT</span> list</a>:
+</P>
+<ul class="disc">
+<li>
+<span class="bold">Specifying <span class="qtext">*</span> Without Addition <span class="qtext">CORRESPONDING FIELDS</span></span>
+<br></li>
+</ul>
+<dl>
+
+<dd>
+If all columns are read with <span class="qtext">*</span>, <span class="qtext">CORRESPONDING FIELDS</span>
+is not specified and the <span class="qtext">SELECT</span> statement is not the main query of a <a href="javascript:call_link('abapwith.htm')" class="blue">
+<span class="qtext">WITH</span></a> statement, then <span class="qtext">SELECT</span> behaves as follows:
+</dd>
+</dl>
+<ul class="circlem2">
+<li>When a regular work area is specified, the row of the results set is assigned left-aligned and unconverted,
+in accordance with the structure of the results set. Unaffected parts of <span class="qtext">wa</span>
+retain their previous content. To be able to access the components of the results set according to type, the work area <span class="qtext">wa</span> must be structured like the results set.</li>
+</ul>
+<ul class="circlem2">
+<li>When a <a href="javascript:call_link('abenlob_handle_structure_glosry.htm')" class="grey" title="词汇表条目">LOB handle structure</a> is specified, it must be constructed (in accordance with the
+<a href="javascript:call_link('abenopen_sql_wa.htm')" class="blue">prerequisites</a>) exactly like the structure of the
+<a href="javascript:call_link('abapselect_data_source.htm')" class="blue">data source</a>. The content of the columns of the results set that are not assigned to any
+<a href="javascript:call_link('abenlob_handle_component_glosry.htm')" class="grey" title="词汇表条目">LOB handle components</a> are directly assigned to the corresponding components of the work area. One
+<a href="javascript:call_link('abenselect_into_lob_handles.htm')" class="blue">LOB handle</a> is created for each LOB handle component.</li>
+</ul>
+<ul class="disc">
+<li>
+<span class="bold">All Other Combinations</span>
+<br></li>
+</ul>
+<dl>
+
+<dd>
+If the results set consists of a single column specified explicitly after <span class="qtext">SELECT</span> or a single
+<a href="javascript:call_link('abensql_expression_glosry.htm')" class="grey" title="词汇表条目">SQL expression</a> or a single
+<a href="javascript:call_link('abenaggregate_expression_glosry.htm')" class="grey" title="词汇表条目">aggregate expression</a>, <span class="qtext">
+wa</span> can be an elementary data object or a structure. If the results set consists of multiple columns, it must be a structure and the following rules apply:
+</dd>
+</dl>
+<ul class="circlem2">
+<li>If the addition <span class="qtext">CORRESPONDING FIELDS</span> is not specified, <span class="qtext">wa</span>
+must contain enough components and the content of the columns are assigned to the components of <span class="qtext">
+wa</span> from left to right in the order specified after <span class="qtext">SELECT</span>. The content of surplus components of <span class="qtext">wa</span> is not changed.</li>
+</ul>
+<ul class="circlem2">
+<li>If the addition <span class="qtext">CORRESPONDING FIELDS</span> is specified, only those content
+of columns for which there are identically named components in <span class="qtext">wa</span> are assigned
+to them. The alias names defined using <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">AS</span></a>
+are taken into account. Columns and aggregate expressions that appear multiple times can only be assigned
+using alias names, if <span class="qtext">CORRESPONDING FIELDS</span> is specified. If <span class="qtext">wa</span>
+contains substructures, these are resolved by the addition <span class="qtext">CORRESPONDING FIELDS</span>
+and the full names associated using the structure component selector are considered. If a column name
+appears multiple times and no alias name was assigned, the last column listed is assigned. If one or
+more names match, all the columns for which there are no name matches are removed from the <a href="javascript:call_link('abapselect_list.htm')" class="blue">
+<span class="qtext">SELECT</span> list</a> implicitly and therefore from the results set too. If there
+are no name matches, none of the columns are removed from the results set. If <span class="qtext">*</span>
+is specified for the <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">SELECT</span> list</a>, it may be updated to a list of columns implicitly.</li>
+</ul>
+<P>
+<a href="javascript:call_link('abenselect_into_conversion.htm')" class="blue">Assignment rules</a> apply to the individual assignments. If a
+<a href="javascript:call_link('abenlob_glosry.htm')" class="grey" title="词汇表条目">LOB</a> of a reference variable for
+<a href="javascript:call_link('abenlob_handle_glosry.htm')" class="grey" title="词汇表条目">LOB handles</a> is assigned, a
+<a href="javascript:call_link('abenselect_into_lob_handles.htm')" class="blue">LOB handle is created</a>. If an
+<a href="javascript:call_link('abenoffset_length.htm')" class="blue">offset/length is specified</a> to access a substring of <span class="qtext">wa</span>, <span class="qtext">+off</span> must not be omitted.
+</P>
+<P>
+If <span class="qtext">CORRESPONDING FIELDS</span> is used, the columns of the results set defined in
+the <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">SELECT</span> list</a> correspond
+to the components of the target area. Among other things, there must be at least one match or there must be an identically named component in the target area for each explicitly specified column.
+</P>
+<p><span class="h4">
+Notes
+</span></p>
+<ul class="disc">
+<li>
+The second point above, "All Other Combinations" also includes <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">
+data_source~*</span></a> when specified in the <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">SELECT</span>
+list</a>. In this case, <span class="qtext">wa</span> must be a structure. This is particularly valid
+when only one data source <a href="javascript:call_link('abapselect_data_source.htm')" class="blue"><span class="qtext">data_source~*</span></a>
+is specified. If a single <span class="qtext">data_source~*</span> is specified, therefore, other rules
+apply than in the case where <span class="qtext">*</span> is specified, even if the same results sets are defined both times.
+<br><br></li>
+<li>
+The addition <span class="qtext">CORRESPONDING FIELDS</span> ignores names which were only defined using
+the addition <span class="qtext">AS name</span> of the statement <a href="javascript:call_link('abapinclude_type.htm')" class="blue"><span class="qtext">
+INCLUDE</span></a> or when integrating the structures in ABAP Dictionary. Any components renamed using
+the addition <span class="qtext">RENAMING WITH SUFFIX</span> of the statement <span class="qtext">INCLUDE</span> (or renamed similarly in ABAP Dictionary) are, however, not ignored.
+<br><br></li>
+<li>
+If the addition <span class="qtext">CORRESPONDING FIELDS</span> is used, fields with matching names
+(if known statically) are assigned when the program is generated or are otherwise assigned once when the <span class="qtext">SELECT</span> statement is executed. <br><br>
+<br></li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<P>
+In this example, the four columns of a results set are read into four respective components of the same name in a work area, where they are in a different order.
+</P>
+<p class="qtextml1">
+<span class="qtext">
+DATA: <br>&nbsp;&nbsp;BEGIN OF wa, <br>&nbsp;&nbsp;&nbsp;&nbsp;cityfrom TYPE spfli-cityfrom, <br>&nbsp;&nbsp;&nbsp;&nbsp;cityto&nbsp;&nbsp; TYPE spfli-cityto, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;carrid TYPE spfli-carrid, <br>&nbsp;&nbsp;&nbsp;&nbsp;connid&nbsp;&nbsp; TYPE spfli-connid, <br>
+&nbsp;&nbsp;END OF wa. <br> <br>SELECT SINGLE <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FROM spfli <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FIELDS carrid, connid, cityfrom, cityto <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WHERE carrid = 'LH' AND connid = '400' <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTO CORRESPONDING FIELDS OF @wa. <br>cl_demo_output=>display( wa ). <br><br>
+</span>
+</p>
+<A NAME="@@( )@@SELECT INTO@@"></A>
+<A NAME="@@,@@SELECT INTO@@"></A>
+<p><span class="h2">
+<A NAME="!ABAP_ALTERNATIVE_2@2@"></A> <span class="bold">Alternative 2</span>
+</span></p>
+<P>
+<span class="qtext">... INTO (<i class=bn>[</i>NEW<i class=bn>]</i> @dobj1, <i class=bn>[</i>NEW<i class=bn>]</i> @dobj2, ... )</span> <br><br><br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<P>
+If the results set consists of multiple columns <a href="javascript:call_link('abapselect_clause_col_spec.htm')" class="blue"><span class="qtext">
+col_spec</span></a> specified explicitly in the <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">SELECT</span>
+list</a>, a list of data objects <span class="qtext">dobj1, dobj2, ...</span> (in parentheses and separated
+by commas) can be specified after <span class="qtext">INTO</span>. The following can be specified as a single data object:
+</P>
+<ul class="disc">
+<li>
+If the addition <a href="javascript:call_link('abapselect_into_new.htm')" class="blue"><span class="qtext">NEW</span></a> is not specified:
+<br></li>
+</ul>
+<ul class="circlem2">
+<li>An elementary host variable <a href="javascript:call_link('abenopen_sql_host_variables.htm')" class="blue"><span class="qtext">@dobj</span></a>.</li>
+</ul>
+<ul class="circlem2">
+<li>An inline declaration, <a href="javascript:call_link('abendata_inline.htm')" class="blue"><span class="qtext">@DATA(dobj)</span></a>, where an elementary variable with the type of the assigned column of the results set is declared. The
+<a href="javascript:call_link('abendeclaration_operator_glosry.htm')" class="grey" title="词汇表条目">declaration operator</a> <a href="javascript:call_link('abendata_inline.htm')" class="blue">
+<span class="qtext">DATA</span></a> must be prefixed with the escape character <span class="qtext">@</span>.</li>
+</ul>
+<ul class="disc">
+<li>
+If the addition <a href="javascript:call_link('abapselect_into_new.htm')" class="blue"><span class="qtext">NEW</span></a> is specified:
+<br></li>
+</ul>
+<ul class="circlem2">
+<li>A suitable typed <a href="javascript:call_link('abendata_reference_variable_glosry.htm')" class="grey" title="词汇表条目">data reference variable</a>.</li>
+</ul>
+<ul class="circlem2">
+<li>An inline declaration for a <a href="javascript:call_link('abendata_reference_variable_glosry.htm')" class="grey" title="词汇表条目">data reference variable</a>.</li>
+</ul>
+<P>
+The same number of elementary data objects <span class="qtext">dobj</span> must be specified as there
+are columns in the results set. The content of the columns in the results set is assigned to the data objects from left to right, according to the order specified after <span class="qtext">SELECT</span>.
+<a href="javascript:call_link('abenselect_into_conversion.htm')" class="blue">Assignment rules</a> apply to the individual assignments. If a
+<a href="javascript:call_link('abenlob_glosry.htm')" class="grey" title="词汇表条目">LOB</a> of a reference variable for
+<a href="javascript:call_link('abenlob_handle_glosry.htm')" class="grey" title="词汇表条目">LOB handles</a> is assigned, a
+<a href="javascript:call_link('abenselect_into_lob_handles.htm')" class="blue">LOB handle is created</a>. If an
+<a href="javascript:call_link('abenoffset_length.htm')" class="blue">offset/length is specified</a> to access a data object,
+<span class="qtext">+off</span> must not be omitted. If the results set is empty, the data objects remain
+unchanged. If a handleable exception is raised when the data objects are filled, their content is undefined when the exception is handled.
+</P>
+<P>
+If the results set consists of one row, the columns are assigned from that row. If the results set contains
+multiple rows, <span class="qtext">SELECT</span> must be followed by an <span class="qtext">ENDSELECT</span>
+statement; the columns of the results set are assigned to the data objects row-by-row and they can be
+evaluated in a loop. If used in the statement <a href="javascript:call_link('abapfetch.htm')" class="blue"><span class="qtext">FETCH</span></a>, the columns of the row are extracted at the current cursor position.
+</P>
+<p><span class="h4">
+Note
+</span></p>
+<P>
+No list can be specified after <span class="qtext">INTO</span> if the results set is defined by specifying
+<span class="qtext">*</span> or <span class="qtext">dbtab1~*, dbtab2~*, ...</span> in the <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">SELECT</span> list</a>.
+</P>
+<p><span class="h4">
+Example
+</span></p>
+<P>
+In this example, the four columns of a results set are read into four individually specified components of a structure. Unlike in the previous example, the runtime environment does not compare names here.
+</P>
+<p class="qtextml1">
+<span class="qtext">
+DATA: <br>&nbsp;&nbsp;BEGIN OF wa, <br>&nbsp;&nbsp;&nbsp;&nbsp;cityfrom TYPE spfli-cityfrom, <br>&nbsp;&nbsp;&nbsp;&nbsp;cityto&nbsp;&nbsp; TYPE spfli-cityto, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;carrid TYPE spfli-carrid, <br>&nbsp;&nbsp;&nbsp;&nbsp;connid&nbsp;&nbsp; TYPE spfli-connid, <br>
+&nbsp;&nbsp;END OF wa. <br> <br>SELECT SINGLE <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FROM spfli <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FIELDS carrid, connid, cityfrom, cityto <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WHERE carrid = 'LH' AND connid = '400' <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTO (@wa-carrid, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @wa-connid, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @wa-cityfrom, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @wa-cityto). <br> <br>cl_demo_output=>display( wa ).
+</span>
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<P>
+In this example, the four columns of a results set are read with inline declarations for the individual target objects.
+</P>
+<p class="qtextml1">
+<span class="qtext">
+SELECT SINGLE <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FROM spfli <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FIELDS carrid, connid, cityfrom, cityto <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WHERE carrid = 'LH' AND connid = '400' <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTO (@DATA(carrid), <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @DATA(connid), <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @DATA(cityfrom), <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @DATA(cityto)). <br>cl_demo_output=>display( <br>&nbsp;&nbsp;|{ carrid } { connid } { cityfrom } { cityto }| ). <br><br>
+</span>
+</p>
+<A NAME="@@APPENDING@@SELECT INTO@@"></A>
+<A NAME="@@TABLE@@SELECT INTO@@"></A>
+<A NAME="@@CORRESPONDING FIELDS OF TABLE@@SELECT INTO@@"></A>
+<A NAME="@@PACKAGE SIZE@@SELECT INTO@@"></A>
+<p><span class="h2">
+<A NAME="!ABAP_ALTERNATIVE_3@3@"></A> <span class="bold">Alternative 3</span>
+</span></p>
+<P>
+<span class="qtext">... INTO<i class=bn>|</i>APPENDING <i class=bn>[</i>CORRESPONDING FIELDS OF<i class=bn>]</i> TABLE <i
+class=bn>[</i>NEW<i class=bn>]</i> @itab <i class=bn>[</i>PACKAGE SIZE n<i class=bn>]</i></span> <br><br><br><!-- /A -->
+</P>
+<p><span class="h3">
+Addition:
+</span></p>
+<P>
+   <A HREF="#!ABAP_ONE_ADD@1@" class="blue"> <span class="qtext">... PACKAGE SIZE n</span> </A> <br><br>
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<P>
+If the results set consists of multiple rows, an internal table <span class="qtext">itab</span> of any table type can be specified as a host variable after <span class="qtext">INTO TABLE</span> or
+<a href="javascript:call_link('abenopen_sql_host_variables.htm')" class="blue">APPENDING TABLE</a>. The row type of the internal table must meet the
+<a href="javascript:call_link('abenopen_sql_wa.htm')" class="blue">prerequisites</a>. If the addition <a href="javascript:call_link('abapselect_into_new.htm')" class="blue">
+<span class="qtext">NEW</span></a> is not specified, the internal table is specified directly. If the addition <a href="javascript:call_link('abapselect_into_new.htm')" class="blue"><span class="qtext">NEW</span></a> is specified, a
+<a href="javascript:call_link('abendata_reference_variable_glosry.htm')" class="grey" title="词汇表条目">data reference variable</a> must be specified for <span class="qtext">itab</span>, with which a corresponding tabular
+<a href="javascript:call_link('abenanonymous_data_object_glosry.htm')" class="grey" title="词汇表条目">anonymous data object</a> is generated.
+</P>
+<P>
+The results set is inserted into the internal table <span class="qtext">itab</span> or the anonymous
+data object row by row in accordance with the rules of <a href="javascript:call_link('abapinsert_itab.htm')" class="blue"><span class="qtext">INSERT</span></a>; a sorting process is executed in the case of a
+<a href="javascript:call_link('abensorted_table_glosry.htm')" class="grey" title="词汇表条目">sorted table</a>.
+</P>
+<ul class="disc">
+<li>
+If <span class="qtext">INTO</span> is used, the internal table is initialized.
+<br><br></li>
+<li>
+Previous rows remain intact if <span class="qtext">APPENDING</span> is used. <span class="qtext">APPENDING</span>
+cannot be used together with the addition <a href="javascript:call_link('abapselect_into_new.htm')" class="blue"><span class="qtext">NEW</span></a>.
+<br></li>
+</ul>
+<P>
+If there is a conflict with an existing unique table key, a non-handleable exception is raised like in the case of <a href="javascript:call_link('abapinsert_itab_linespec.htm')" class="blue"><span class="qtext">INSERT LINES OF</span></a>.
+</P>
+<P>
+Before any assignment of a row of the results set, an initial row of the internal table <span class="qtext">itab</span>
+is created and the row of the results set is assigned to this row. When assigning a row of the results
+set to a row of the internal table with or without <span class="qtext">CORRESPONDING FIELDS</span>,
+the same rules apply as when assigning to an individual work area <span class="qtext">wa</span> (see above) with the exception that when inserting into internal tables,
+<a href="javascript:call_link('abenlob_handle_glosry.htm')" class="grey" title="词汇表条目">LOB handles</a> can be
+<a href="javascript:call_link('abenselect_into_lob_handles.htm')" class="blue">created</a> as
+<a href="javascript:call_link('abenlocator_glosry.htm')" class="grey" title="词汇表条目">locators</a> but not as <a href="javascript:call_link('abenreader_stream_glosry.htm')" class="grey" title="词汇表条目">reader streams</a>.
+</P>
+<P>
+If the addition <span class="qtext">PACKAGE SIZE</span> is not used, all rows of the results set are
+inserted in the internal table <span class="qtext">itab</span> and the <span class="qtext">ENDSELECT</span> statement must not be specified after <span class="qtext">SELECT</span>.
+</P>
+<P>
+If the results set is empty, the internal table is initialized when <span class="qtext">INTO</span>
+is used, and remains unchanged when <span class="qtext">APPENDING</span> is used. If a handleable exception is raised when the internal table is filled, its content is undefined when the exception is handled. <br><br>
+</P>
+<p><span class="h4">
+Notes
+</span></p>
+<ul class="disc">
+<li>
+When specifying an internal table with a unique <a href="javascript:call_link('abenprimary_table_key_glosry.htm')" class="grey" title="词汇表条目">primary</a> or
+<a href="javascript:call_link('abensecondary_table_key_glosry.htm')" class="grey" title="词汇表条目">secondary table key</a>, an exception is raised that cannot be handled if an attempt is made to create a duplicate entry.
+<br><br></li>
+<li>
+If the internal table contains more columns than required when using the addition <span class="qtext">CORRESPONDING
+FIELDS</span>, generally too much memory is being used by initial fields and a warning is displayed by the syntax check. In cases where the columns are needed, for example when they are filled with derived values by the program, a
+<a href="javascript:call_link('abenpragma.htm')" class="blue">pragma</a> can be used to suppress the warning.
+<br><br></li>
+<li>
+The maximum number of <a href="javascript:call_link('abendata_stream_glosry.htm')" class="grey" title="词汇表条目">data streams</a>
+that can be assigned to an ABAP SQL statement is limited to 16, which means it does not make any sense to create reader streams when importing internal tables.
+<br><br></li>
+<li>
+Instead of using <span class="qtext">APPENDING TABLE</span> to form union sets on the AS ABAP, this can now be done directly in the database using <a href="javascript:call_link('abapunion.htm')" class="blue"><span class="qtext">UNION</span></a>, and
+<a href="javascript:call_link('abapsql_expr.htm')" class="blue">SQL expressions</a> can be used to calculate column values. <br><br>
+<br></li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+In this example, the four columns of a results set are read into four respective components of the same name in an internal table, where they are in a different order.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+TYPES: <br>&nbsp;&nbsp;BEGIN OF wa, <br>&nbsp;&nbsp;&nbsp;&nbsp;cityfrom TYPE spfli-cityfrom, <br>&nbsp;&nbsp;&nbsp;&nbsp;cityto&nbsp;&nbsp; TYPE spfli-cityto, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;carrid TYPE spfli-carrid, <br>&nbsp;&nbsp;&nbsp;&nbsp;connid&nbsp;&nbsp; TYPE spfli-connid, <br>
+&nbsp;&nbsp;END OF wa. <br> <br>DATA itab TYPE SORTED TABLE OF wa WITH UNIQUE KEY table_line. <br> <br>SELECT FROM spfli <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FIELDS carrid, connid, cityfrom, cityto <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTO CORRESPONDING FIELDS OF TABLE @itab. <br>cl_demo_output=>display( itab ).
+</span>
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The following example for <span class="qtext">APPENDING TABLE</span> creates the same internal table as the example for <a href="javascript:call_link('abapunion.htm')" class="blue"><span class="qtext">UNION</span></a>.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+SELECT FROM scarr <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FIELDS carrname, <br>&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAST( '-' AS CHAR( 4&nbsp;&nbsp;) ) AS connid, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAST( '-' AS CHAR( 20 ) ) AS cityfrom, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAST( '-' AS CHAR( 20 ) ) AS cityto <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WHERE carrid = 'LH' <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTO TABLE @DATA(result). <br>
+ <br>SELECT FROM spfli <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FIELDS '-' AS carrname, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; connid, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cityfrom, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cityto <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE carrid = 'LH' <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APPENDING TABLE @result. <br>
+ <br>SORT result BY carrname DESCENDING connid cityfrom cityto. <br> <br>cl_demo_output=>display( result ). <br><br>
+</span>
+</p>
+<p><span class="h3">
+<A NAME="!ABAP_ONE_ADD@1@"></A> <span class="bold">Addition</span>
+</span></p>
+<P>
+<span class="qtext">... PACKAGE SIZE n</span> <!-- /A -->  <br>
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<P>
+If the addition <span class="qtext">PACKAGE SIZE</span> is specified, all rows of the results set for
+<span class="qtext">SELECT</span> are processed in a loop, which must be closed with <span class="qtext">ENDSELECT</span>.
+They are inserted in packages of <span class="qtext">n</span> rows in the internal table <span class="qtext">itab</span>. <span class="qtext">n</span> expects a
+<a href="javascript:call_link('abenopen_sql_host_variables.htm')" class="blue">host variable</a>, a
+<a href="javascript:call_link('abenopen_sql_host_expressions.htm')" class="blue">host expression</a>, or a
+<a href="javascript:call_link('abenabap_sql_host_literals.htm')" class="blue">literal</a> of type <span class="qtext">i</span>
+(that contains the number of rows). The content of <span class="qtext">n</span> must match the data type <span class="qtext">i</span> in accordance with the rules for a
+<a href="javascript:call_link('abenlossless_assignment_glosry.htm')" class="grey" title="词汇表条目">lossless assignment</a>. <span class="qtext">
+n</span> must have the type <span class="qtext">b</span>, <span class="qtext">s</span>, <span class="qtext">i</span>, or <span class="qtext">int8</span>. This is checked in
+<a href="javascript:call_link('abenopensql_strict_mode_751.htm')" class="blue">strict mode</a> of the syntax check from Release
+7.51. If the value of <span class="qtext">n</span> is less than 0, an exception is raised that cannot
+be handled. If <span class="qtext">n</span> is equal to 0, all rows of the results set are inserted
+in the internal table <span class="qtext">itab</span>. If used in the statement <a href="javascript:call_link('abapfetch.htm')" class="blue">
+<span class="qtext">FETCH</span></a>, <span class="qtext">n</span> rows are extracted from the current cursor position.
+</P>
+<P>
+If <span class="qtext">INTO</span> is used, the internal table is initialized before each insertion
+and, in the <span class="qtext">SELECT</span> loop, it only contains the rows of the current package.
+If <span class="qtext">APPENDING</span> is used, a further package is added to the existing rows of
+the internal table for each <span class="qtext">SELECT</span> loop or for each extraction using <span class="qtext">FETCH</span>.
+</P>
+<P>
+After <span class="qtext">ENDSELECT</span>, the content of <span class="qtext">itab</span> is not defined
+if <span class="qtext">INTO</span> is used. That is, the table can either contain the rows of the last
+package or it can be initial. If <span class="qtext">APPENDING</span> is used, the content of <span class="qtext">itab</span> retains the state of the last loop pass.
+</P>
+<p><span class="h4">
+Notes
+</span></p>
+<ul class="disc">
+<li>
+The addition <span class="qtext">PACKAGE SIZE</span> can be used after <span class="qtext">INTO</span>
+to limit the amount of data read in one go. Otherwise a runtime error can occur when reading a data set that is too large into an internal table so that its
+<a href="javascript:call_link('abenmemory_consumption_2.htm')" class="blue">maximum size</a> is exceeded. <span class="qtext">PACKAGE SIZE</span> cannot prevent this runtime error after <span class="qtext">APPENDING</span>.
+<br><br></li>
+<li>
+If the addition <span class="qtext">PACKAGE SIZE</span> is specified with the addition <a href="javascript:call_link('abenwhere_logexp_itab.htm')" class="blue">
+<span class="qtext">FOR ALL ENTRIES</span></a>, all selected rows are read into an internal system table
+initially and the packages are only created when they are passed from the system table to the actual
+target table. The addition <span class="qtext">FOR ALL ENTRIES</span> thereby negates the effect of <span class="qtext">PACKAGE SIZE</span> in preventing memory overflow.
+<br><br></li>
+<li>
+The addition <span class="qtext">PACKAGE SIZE</span> does not influence the size of the
+<a href="javascript:call_link('abenopen_sql_oview.htm')" class="blue">packages</a> (configured in the profile parameters) used to transport data between the database server and AS ABAP. <br><br>
+<br></li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+In this example, columns of the database table SPFLI are read and output in packages of 10 rows.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+DATA(out) = cl_demo_output=>new( ). <br>SELECT carrid, connid, cityfrom, cityto <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FROM spfli <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ORDER BY carrid, connid, cityfrom, cityto <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTO&nbsp;&nbsp;TABLE @DATA(result) PACKAGE SIZE 10. <br>
+&nbsp;&nbsp;out->next_section( |Package { sy-dbcnt / 10 }| <br>&nbsp;&nbsp;&nbsp;&nbsp;)->write( result ). <br>ENDSELECT. <br>out->display( ). <br><br>
+</span>
+</p>
+<A NAME="@@DATA@@SELECT INTO@@"></A>
+<p><span class="h2">
+<A NAME="!ABAP_ALTERNATIVE_4@4@"></A> <span class="bold">Alternative 4</span>
+</span></p>
+<P>
+ <span class="qtext">... INTO <i class=bn>[</i>NEW<i class=bn>]</i> @DATA(wa)</span> <br><br><br><!-- /A -->
+</P>
+<p><span class="h2">
+<A NAME="!ABAP_ALTERNATIVE_5@5@"></A> <span class="bold">Alternative 5</span>
+</span></p>
+<P>
+ <span class="qtext">... INTO <i class=bn>[</i>NEW<i class=bn>]</i> TABLE @DATA(itab) <i class=bn>[</i>PACKAGE SIZE n<i class=bn>]</i></span> <br><br><br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<P>
+<a href="javascript:call_link('abeninline_declaration_glosry.htm')" class="grey" title="词汇表条目">Inline declaration</a> of the target area or of
+<a href="javascript:call_link('abendata_reference_variable_glosry.htm')" class="grey" title="词汇表条目">data reference variables</a> that point to the target area. The
+<a href="javascript:call_link('abendeclaration_operator_glosry.htm')" class="grey" title="词汇表条目">declaration operator</a> <a href="javascript:call_link('abendata_inline.htm')" class="blue">
+<span class="qtext">DATA</span></a> must be prefixed with the escape character <span class="qtext">@</span>.
+</P>
+<ul class="disc">
+<li>
+If the addition <a href="javascript:call_link('abapselect_into_new.htm')" class="blue"><span class="qtext">NEW</span></a> is
+not specified, a data object is declared whose data type is constructed according to the structure of the results set defined after <span class="qtext">SELECT</span> and the number of
+<a href="javascript:call_link('abapselect_data_source.htm')" class="blue">data sources</a> specified after <a href="javascript:call_link('abapfrom_clause.htm')" class="blue">
+<span class="qtext">FROM</span></a>. <span class="qtext">INTO @DATA(wa)</span> declares a flat data object <span class="qtext">wa</span> of this type; <span class="qtext">INTO TABLE @DATA(itab)</span> declares a
+<a href="javascript:call_link('abenstandard_table_glosry.htm')" class="grey" title="词汇表条目">standard table</a> <span class="qtext">itab</span> of this row type with an
+<a href="javascript:call_link('abenitab_empty_key.htm')" class="blue">empty table key</a>. The same applies to <span class="qtext">PACKAGE SIZE</span> as when specifying an existing internal table.
+<br><br></li>
+<li>
+If the addition <a href="javascript:call_link('abapselect_into_new.htm')" class="blue"><span class="qtext">NEW</span></a> is specified, a
+<a href="javascript:call_link('abendata_reference_variable_glosry.htm')" class="grey" title="词汇表条目">data reference variable</a> with the generic static type <span class="qtext">data</span> is declared and an
+<a href="javascript:call_link('abenanonymous_data_object_glosry.htm')" class="grey" title="词汇表条目">anonymous data object</a> is generated whose type is constructed in the same way as when <span class="qtext">NEW</span> is not specified.
+<br></li>
+</ul>
+<P>
+The prerequisites for an online declaration are as follows:
+</P>
+<ul class="disc">
+<li>
+If the addition <a href="javascript:call_link('abapselect_into_new.htm')" class="blue"><span class="qtext">NEW</span></a> is
+not specified, the structure of the results set must be known statically. The <a href="javascript:call_link('abapselect_list.htm')" class="blue">
+<span class="qtext">SELECT</span> list</a>, the <a href="javascript:call_link('abapfrom_clause.htm')" class="blue"><span class="qtext">FROM</span> clause</a>, and any
+<a href="javascript:call_link('abapselect_indicators.htm')" class="blue">indicators</a> must be specified statically and
+<a href="javascript:call_link('abenopen_sql_host_variables.htm')" class="blue">host variables</a> in the <span class="qtext">SELECT</span> list must not be generic.
+<br><br></li>
+<li>
+The results set defined in the <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">SELECT</span> list</a> cannot have multiple columns with the same name. This can be bypassed using alias names.
+<br><br></li>
+<li>
+In a <a href="javascript:call_link('abapselect_list.htm')" class="blue">results set</a> with multiple
+rows or if the addition <a href="javascript:call_link('abapselect_indicators.htm')" class="blue"><span class="qtext">INDICATORS</span></a> is specified, every
+<a href="javascript:call_link('abapsql_expr.htm')" class="blue">SQL expression</a> and every <a href="javascript:call_link('abapselect_aggregate.htm')" class="blue">aggregate expression</a> must have an alias name.
+<br><br></li>
+<li>
+If the addition <a href="javascript:call_link('abapselect_client.htm')" class="blue"><span class="qtext">CLIENT SPECIFIED</span></a> is used to access a client-specific
+<a href="javascript:call_link('abencds_entity_glosry.htm')" class="grey" title="词汇表条目">CDS entity</a>, a name must be specified for the client column at the same time.
+<br></li>
+</ul>
+<P>
+The data type of the declared data object <span class="qtext">wa</span> or <span class="qtext">itab</span> is determined as follows:
+</P>
+<ul class="disc">
+<li>
+If the results set in the <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">SELECT</span>
+list</a> is defined using a single specified column <a href="javascript:call_link('abapselect_clause_col_spec.htm')" class="blue"><span class="qtext">
+col_spec</span></a> for which no name can be identified, the data type of <span class="qtext">wa</span> or the row type of <span class="qtext">itab</span> is its elementary type.
+<br><br></li>
+<li>
+If the results set in the <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">SELECT</span>
+list</a> is defined using a single specified column <a href="javascript:call_link('abapselect_clause_col_spec.htm')" class="blue"><span class="qtext">
+col_spec</span></a> for which no name can be identified, the data type of <span class="qtext">wa</span> or the row type of <span class="qtext">itab</span> is a structure with a component, with its elementary type. .
+<br><br></li>
+<li>
+If the results set in the <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">SELECT</span>
+list</a> is defined using a single <span class="qtext">data_source~*</span> or a list of multiple specified
+columns <a href="javascript:call_link('abapselect_clause_col_spec.htm')" class="blue"><span class="qtext">col_spec</span></a>,
+the data type of <span class="qtext">wa</span> or the row type of <span class="qtext">itab</span> is
+a structure with elementary components. The data types of the components are the elementary types of the columns in the results set in the order defined there.
+<br><br></li>
+<li>
+If <span class="qtext">data_source~*</span> is specified in the <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">
+SELECT</span> list</a> together with other elements, the data type of <span class="qtext">wa</span>
+or the row type of <span class="qtext">itab</span> is a nested structure. For each data source <a href="javascript:call_link('abapselect_data_source.htm')" class="blue">
+<span class="qtext">data_source</span></a> specified in this way, a substructure is generated with the
+name or alias name of the table or view. The data types of the components of the substructures are the elementary types of the data source in the order defined there. If the data source is a
+<a href="javascript:call_link('abencommon_table_expression_glosry.htm')" class="grey" title="词汇表条目">common table expression</a>
+declared using <a href="javascript:call_link('abapwith.htm')" class="blue"><span class="qtext">WITH</span></a>, the first character <span class="qtext">+</span> of its name is ignored for the name of the substructure.
+<br><br></li>
+<li>
+If the results set in the <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">SELECT</span> list</a> is defined using <span class="qtext">*</span>, the data type depends on the number of
+<a href="javascript:call_link('abapselect_data_source.htm')" class="blue">data sources</a> specified after <a href="javascript:call_link('abapfrom_clause.htm')" class="blue"><span class="qtext">FROM</span></a>:
+<br></li>
+</ul>
+<ul class="circlem2">
+<li>In reads from a single <a href="javascript:call_link('abapselect_data_source.htm')" class="blue">data source</a> <span class="qtext">data_source</span>,
+the data type of <span class="qtext">wa</span> or the row type of <span class="qtext">itab</span> is
+the same as in a definition of the results set using a single <span class="qtext">data_source~*</span> (see above), that is, a structure with elementary components.</li>
+</ul>
+<ul class="circlem2">
+<li>In reads from multiple <a href="javascript:call_link('abapselect_data_source.htm')" class="blue">data sources</a> <span class="qtext">data_source1</span>, <span class="qtext">data_source2</span>, ... using a
+<a href="javascript:call_link('abapselect_join.htm')" class="blue">join</a>, the data type of <span class="qtext">wa</span>
+or the row type of <span class="qtext">itab</span> is the same as in a definition of the results set
+using <span class="qtext">data_source1~*, data_source2~*, ...</span>.  (see above), that is, a structure with a substructure for each data source.</li>
+</ul>
+<P>
+The elementary data type of an elementary data object or an elementary component of a structure is constructed as follows:
+</P>
+<ul class="disc">
+<li>
+For columns of data sources, the data type is taken from ABAP Dictionary.
+<br><br></li>
+<li>
+For <a href="javascript:call_link('abapsql_expr.htm')" class="blue">SQL expressions</a> and <a href="javascript:call_link('abapselect_aggregate.htm')" class="blue">aggregate expressions</a>, the data type is their result type.
+<br><br></li>
+<li>
+For a single host variable as an SQL expression, the data type is its ABAP type.
+<br></li>
+</ul>
+<P>
+The names of the elementary components of a structure match the names of the associated columns from the <a href="javascript:call_link('abapselect_list.htm')" class="blue">results set</a>. Any alias names defined there are respected.
+</P>
+<p><span class="h4">
+Notes
+</span></p>
+<ul class="disc">
+<li>
+Specified columns for which no name can be identified are SQL expressions and aggregate expressions without alias name.
+<br><br></li>
+<li>
+When an inline declaration <span class="qtext">@DATA(itab)</span> is specified after <span class="qtext">APPENDING
+TABLE</span>, this addition usually works like <span class="qtext">INTO TABLE</span> and is therefore pointless in this combination.
+<br><br></li>
+<li>
+After <a href="javascript:call_link('abapfetch.htm')" class="blue"><span class="qtext">FETCH</span></a>, an inline declaration
+can only be made together with the addition <a href="javascript:call_link('abapselect_into_new.htm')" class="blue"><span class="qtext">NEW</span></a>.
+<br><br></li>
+<li>
+The addition <span class="qtext">CORRESPONDING FIELDS</span> cannot be used before inline declarations.
+<br><br></li>
+<li>
+When inline declarations are used, the syntax check is performed in a <a href="javascript:call_link('abenopensql_strict_mode_740_sp08.htm')" class="blue">strict mode</a>, which handles the statement more strictly than the regular syntax check.
+<br></li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+This example reads columns of a single row in an work area declared inline.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+SELECT SINGLE <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FROM scarr <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FIELDS carrname, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;carrid, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WHERE carrid = 'LH' <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTO @DATA(result). <br> <br>cl_demo_output=>display( result ).
+</span>
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<P>
+In this example, all columns of a results set are read into an inner join in an internal table, the
+row type of which is declared as a nested structure with the same structure as the results set. The
+first component of the nested structure is called SCARR and includes all columns of this database table.
+The second component of the nested structure is called SPFLI and includes all columns of this database
+table. The content of the columns MANDT and CARRID in both tables is redundant. For the output, the internal table with a nested row type is converted to an output table without substructures.
+</P>
+<p class="qtextml1">
+<span class="qtext">
+TYPES BEGIN OF output_wa. <br>INCLUDE TYPE scarr AS scarr RENAMING WITH SUFFIX _scarr. <br>INCLUDE TYPE spfli AS spfli RENAMING WITH SUFFIX _spfli. <br>
+TYPES END OF output_wa. <br>TYPES output TYPE SORTED TABLE OF output_wa <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WITH NON-UNIQUE KEY carrid_scarr connid_spfli. <br>
+ <br>SELECT * <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FROM scarr <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INNER JOIN spfli ON scarr~carrid = spfli~carrid <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTO TABLE @DATA(itab). <br> <br>cl_demo_output=>display( CONV output( itab ) ).
+</span>
+</p>
+<p><span class="h4">
+Executable Example
+</span></p>
+<p>
+<a href="javascript:call_link('abenselect_inline_decl_abexa.htm')" class="blue">Inline Declarations</a>
+</p>
+<br>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<a href="javascript:call_link('abapselect_into_new.htm')" class="blue">SELECT - INTO NEW</a><br>
+<a href="javascript:call_link('abapselect_indicators.htm')" class="blue">SELECT - indicators</a><br>
+<a href="javascript:call_link('abapselect_extended_result.htm')" class="blue">SELECT - extended_result</a><br>
+<a href="javascript:call_link('abenselect_into_conversion.htm')" class="blue">SELECT - Assignment Rules</a><br>
+<a href="javascript:call_link('abenselect_into_lob_handles.htm')" class="blue">SELECT - LOB Handles</a><br>
+<img src="exa.gif" alt="Example" title="Example">
+<a href="javascript:call_link('abenselect_inline_decl_abexa.htm')" class="blue">SELECT, Inline Declarations</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

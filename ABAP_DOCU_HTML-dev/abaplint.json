@@ -1,0 +1,43 @@
+{
+  "global": {
+    "files": ["catalog/**/*.abap"]
+  },
+  "syntax": {
+    "version": "v754"
+  },
+  "rules": {
+    "keyword_case": true,
+    "indentation": true,
+    "whitespace_end": true,
+    "contains_tab": true,
+    "space_before_dot": true,
+    "space_before_colon": true,
+    "colon_missing_space": true,
+    "double_space": true,
+    "empty_line_in_statement": true,
+    "sequential_blank": true,
+    "max_one_statement": true,
+    "line_length": { "enabled": true, "length": 120 },
+    "in_statement_indentation": true,
+    "newline_between_methods": true,
+    "line_only_punc": true,
+
+    "exporting": true,
+    "omit_receiving": true,
+    "prefer_is_not": true,
+    "prefer_raise_exception_new": true,
+    "functional_writing": true,
+    "use_new": true,
+
+    "exit_or_check": true,
+    "empty_statement": true,
+    "unused_variables": true,
+    "nesting": true,
+
+    "check_syntax": true,
+    "parser_error": true,
+    "strict_sql": true,
+    "sql_escape_host_variables": true,
+    "check_text_elements": true
+  }
+}

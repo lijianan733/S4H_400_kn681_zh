@@ -1,0 +1,202 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENDB_INTEGRITY -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="Database Integrity">
+<title>
+Database Integrity - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abendb_integrity.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abendb_integrity.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 754, &copy;Copyright 2025 SAP SE. All rights reserved.</p>
+<span class="path">
+</span>
+<p><span class="h1">
+Database Integrity <br><br>
+</span></p>
+<p>
+A database is a model of a part of the real world. It should be consistent and its contents should match
+the part of reality it is modeling. Data integrity is one of the most important aspects to be taken
+into consideration when programming application software. The following aspects of integrity can be distinguished: <br><br>
+</p>
+<ul class="disc">
+<li><span class="bold">Semantic integrity</span></li>
+</ul>
+<ul class="disc">
+<li><span class="bold">Relational integrity</span></li>
+</ul>
+<ul class="disc">
+<li><span class="bold">Operational integrity</span></li>
+</ul>
+<A name="@@ITOC@@ABENDB_INTEGRITY_1"></A>
+<p><span class="h2">
+Semantic Integrity
+</span></p>
+<p>
+Semantic integrity refers to the consistency and completeness of the data. In a flight reservation system,
+for example, the 'Occupied Seats' field for each flight must always contain a value which is less than
+or equal to the content of the 'Maximum number of seats' field. This avoids overbooked flights. If this
+is not the case, the data is <span class="bold">inconsistent</span>. In addition, each new booking in
+the flight reservations table must increase the contents of the field 'Occupied seats' for the booked
+flight in the flights table. Together, both these operations form a unit and, if only one is executed, the database becomes <span class="bold">incomplete</span>.
+</p>
+<p>
+In many database systems, semantic integrity conditions can be checked using constraints or triggers. Due to their lack of standardization, however, these methods are not used in
+<a href="javascript:call_link('abensap_nw_abap_glosry.htm')" class="grey" title="词汇表条目">AS ABAP</a>. This means that, in AS ABAP, the semantic integrity of the database must be verified by the programmer of the application programs.
+</p>
+<p>
+As the flight reservation example shows, the data is usually in an inconsistent or incomplete state in the course of a
+<a href="javascript:call_link('abentransaction_glosry.htm')" class="grey" title="词汇表条目">transaction</a>. For this reason, programmers
+need to be able to confirm the end of the transaction and thus the restoration of the semantic integrity of the data. This is known as the
+<a href="javascript:call_link('abendatabase_commit_glosry.htm')" class="grey" title="词汇表条目">database commit</a>.
+</p>
+<A name="@@ITOC@@ABENDB_INTEGRITY_2"></A>
+<p><span class="h2">
+Relational Integrity
+</span></p>
+<p>
+Relational integrity refers to the observation of the integrity rules governing the relational model.
+Since data modeling in AS ABAP is based on the relational data model, these rules must be observed. They include: <br><br>
+</p>
+<ul class="disc">
+<li>Primary key integrity <br>Each database object must be identified uniquely by a <a href="javascript:call_link('abenprimary_key_glosry.htm')" class="grey" title="词汇表条目">primary key</a>. <br>
+Contrary to relational data model theory, tables can be created without a primary key in most database
+systems. In ABAP Dictionary, each table must have a primary key. For this reason, primary key integrity is automatic. <br></li>
+</ul>
+<ul class="disc">
+<li>Value range integrity <br>Each value of a table field must exist in the value range of this field.
+In a flight reservation system, for example, it must be possible to distinguish between private and
+business customers. This means that the 'Business/Private Customer' field can contain only the value
+<span class="qtext">'B'</span> (for 'business customer') or <span class="qtext">'P'</span> (for "private customer"). <br>
+In most database systems, value ranges can be specified as constraints when defining a table field.
+The database system then automatically prevents the occurrence of an invalid value in a database table.
+Due to its lack of standardization, however, this method is not used in AS ABAP. Despite this, value ranges can be defined for domains and database fields in ABAP Dictionary and used to guarantee the integrity of the database: In
+<a href="javascript:call_link('abendialog_transaction_glosry.htm')" class="grey" title="词汇表条目">dialog transactions</a>, this knowledge is used to check user input and to display possible entries. <br></li>
+</ul>
+<ul class="disc">
+<li>Foreign key integrity (referential integrity) <br>Each
+<a href="javascript:call_link('abenforeign_key_glosry.htm')" class="grey" title="词汇表条目">foreign key</a> must reference an existing
+primary key. In a flight reservation system, for example, the content of the 'Airline Carrier' field must exist in the airline carriers table for each flight. <br>
+In most database systems, <a href="javascript:call_link('abenforeign_key_dependency_glosry.htm')" class="grey" title="词汇表条目">foreign
+key dependencies</a> can be specified as a constraint when defining a table. The database system then
+automatically prevents the occurrence of an invalid row in a database table. Due to its lack of standardization,
+however, this method is not used in AS ABAP. Despite this, foreign key relationships can be defined
+between tables in ABAP Dictionary and used to guarantee the integrity of the database: In dialog transactions, this knowledge is used to check user input and to display possible entries.</li>
+</ul>
+<A name="@@ITOC@@ABENDB_INTEGRITY_3"></A>
+<p><span class="h2">
+Operational Integrity
+</span></p>
+<p>
+Operational integrity guarantees protection for the dataset against inconsistencies caused by multiple
+users attempting to gain access at the same time. The necessity of this is demonstrated by the next example, where clerks S1 and S2 both want to make a booking in the flight reservation system at the same time.
+</p>
+<ul class="disc">
+<li>S1 reads the row of the planned flight from the flights table. The value of 'Occupied Seats' is less than the value of 'Maximum Number of Seats'.</li>
+</ul>
+<ul class="disc">
+<li>S2 reads the row of the planned flight from the flights table. The value of 'Occupied Seats' is less than the value of 'Maximum Number of Seats'.</li>
+</ul>
+<ul class="disc">
+<li>S1 makes a new flight reservation.</li>
+</ul>
+<ul class="disc">
+<li>S1 increases 'Occupied Seats' by 1.</li>
+</ul>
+<ul class="disc">
+<li>S2 makes a new flight reservation.</li>
+</ul>
+<ul class="disc">
+<li>S2 increases 'Occupied Seats' by 1.</li>
+</ul>
+<p>
+Since both clerks see the same value in the field 'Occupied Seats', the flight could now be overbooked.
+</p>
+<p>
+Database systems guarantee operational integrity automatically by enqueueing competing accesses. This is done by using a
+<a href="javascript:call_link('abendatabase_lock_glosry.htm')" class="grey" title="词汇表条目">database lock mechanism</a>. The following variant of the above example demonstrates this:
+</p>
+<ul class="disc">
+<li>S1 reads the row of the planned flight from the flights table with the intention to change. The value of 'Occupied Seats' is less than the value of 'Maximum Number of Seats'.</li>
+</ul>
+<ul class="disc">
+<li>S2 reads the row of the planned flight from the flights table with the intention to change. Since the row is locked by S1, S2 must wait.</li>
+</ul>
+<ul class="disc">
+<li>S1 makes a new flight reservation.</li>
+</ul>
+<ul class="disc">
+<li>S1 increases 'Occupied Seats' by 1.</li>
+</ul>
+<ul class="disc">
+<li>S1 ends the LUW (Logical Unit of Work) and thus releases the database locks.</li>
+</ul>
+<ul class="disc">
+<li>S1 can now access the row of the planned flight from the flights table. The value of 'Occupied Seats' is less than the value of 'Maximum Number of Seats'.</li>
+</ul>
+<ul class="disc">
+<li>S2 makes a new flight reservation.</li>
+</ul>
+<ul class="disc">
+<li>S2 increases 'Occupied Seats' by 1.</li>
+</ul>
+<ul class="disc">
+<li>S2 ends the LUW (Logical Unit of Work) and thus releases the database locks.</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

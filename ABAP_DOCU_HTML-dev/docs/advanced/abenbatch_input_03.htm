@@ -1,0 +1,446 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENBATCH_INPUT_03 -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="Special Features of Batch Input Sessions">
+<title>
+Special Features of Batch Input Sessions - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenbatch_input_03.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenbatch_input_03.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 754, &copy;Copyright 2025 SAP SE. All rights reserved.</p>
+<span class="path">
+</span>
+<p><span class="h1">
+Special Features of Batch Input Sessions
+</span></p>
+<A name="@@ITOC@@ABENBATCH_INPUT_03_1"></A>
+<p><span class="h2">
+Special Features when Generating Batch Input Sessions
+</span></p>
+<A name="@@ITOC@@ABENBATCH_INPUT_03_2"></A>
+<p><span class="h3">
+Step Loop Fields, Fields in Table Controls
+</span></p>
+<p>
+When providing <a href="javascript:call_link('abenstep_loop_glosry.htm')" class="grey" title="词汇表条目">step loop</a> fields with
+values, the number of the step loop line must be specified in parentheses after the field name. (BDCDATA-FNAM = 'FELDX(5)' identifies the step loop field FELDX from the fifth line of the step loop.) <br>
+The same applies to table control fields.
+</p>
+<A name="@@ITOC@@ABENBATCH_INPUT_03_3"></A>
+<p><span class="h3">
+Dynpros with Variable Step Loops
+</span></p>
+<p>
+When <a href="javascript:call_link('abenbatch_input_session_glosry.htm')" class="grey" title="词汇表条目">batch input sessions</a> that contain
+<a href="javascript:call_link('abendynpro_glosry.htm')" class="grey" title="词汇表条目">dynpros</a> with variable step loops are created and run, the standard dynpro size must always be used.
+</p>
+<A name="@@ITOC@@ABENBATCH_INPUT_03_4"></A>
+<p><span class="h3">
+Fields in Subscreens
+</span></p>
+<p>
+In <a href="javascript:call_link('abenbatch_input_glosry.htm')" class="grey" title="词汇表条目">batch input</a>, fields in
+<a href="javascript:call_link('abensubscreen_glosry.htm')" class="grey" title="词汇表条目">subscreens</a> are specified under the name of the calling dynpro. If a dynpro contains multiple subscreens, the field names in the subscreens must be unique.
+</p>
+<p>
+Example: The dynpro SAPTEST1 0100 calls the subscreen SAPTEST2 0200. The field SFLIGHT-CARRID of the
+subscreen SAPTEST2 0200 is to be provided with values in batch input. For the batch input program, the field is part of the calling dynpro, namely SAPTEST1 0100.
+</p>
+<p>
+The technical information for a field also includes the name of the calling dynpro in the batch input field description, if the field concerned is a subscreen field.
+</p>
+<A name="@@ITOC@@ABENBATCH_INPUT_03_5"></A>
+<p><span class="h3">
+Function Codes
+</span></p>
+<p>
+Function codes are set by assigning the required function code value to the batch input field BDC_OKCODE (BDCDATA-FNAM = 'BDC_OKCODE'. BDCDATA-FVAL = 'UPDA'.).
+</p>
+<A name="@@ITOC@@ABENBATCH_INPUT_03_6"></A>
+<p><span class="h3">
+Radio Buttons, Checkboxes, and Pushbuttons
+</span></p>
+<p>
+In batch input, radio buttons and checkboxes are set by assigning 'X' to the field. The radio buttons
+in a group that are not supposed to be set do not have to contain values. If multiple radio buttons are set inadvertently in a group, the system only sets the last one when generating the session.
+</p>
+<p>
+Pushbuttons are handled like function codes. This means assigning the appropriate function code for
+the pushbutton to the field 'BDC_OKCODE'. <span class="bold">Exception:</span> If, on a dynpro, the
+cursor is on a different pushbutton, the function code for this pushbutton applies. This means that
+the entered function code applies (for example, on confirmation dialog boxes). In cases like this, the cursor must be positioned (see below).
+</p>
+<A name="@@ITOC@@ABENBATCH_INPUT_03_7"></A>
+<p><span class="h3">
+Positioning the Cursor
+</span></p>
+<p>
+The cursor is placed on a field by assigning the name of the relevant field to the batch input field BDC_CURSOR.
+</p>
+<p>
+Example: Cursor in the confirmation dialog box is to be set to the "No" function. In the function module
+POPUP_TO_CONFIRM_STEP (function group SPO1), dynpro SAPLSPO1 0100, the name of the pushbutton is SPOP-OPTION2;
+the field BDC_CURSOR must therefore contain 'SPOP-OPTION2' (BDCDATA-FNAM = 'BDC_CURSOR'. BDCDATA-FVAL = 'SPOP-OPTION2'.).
+</p>
+<A name="@@ITOC@@ABENBATCH_INPUT_03_8"></A>
+<p><span class="h3">
+Changes in Transactions
+</span></p>
+<p>
+When a <a href="javascript:call_link('abentransaction_glosry.htm')" class="grey" title="词汇表条目">transaction</a> is changed, the batch input programs must be also be modified in the following cases:
+</p>
+<ul class="disc">
+<li>Mandatory fields added/deleted</li>
+</ul>
+<ul class="disc">
+<li>Field names/properties changed</li>
+</ul>
+<ul class="disc">
+<li>Function codes/function key numbers changed</li>
+</ul>
+<ul class="disc">
+<li>Dynpro order changed <br></li>
+</ul>
+<A name="@@ITOC@@ABENBATCH_INPUT_03_9"></A>
+<p><span class="h2">
+Special Features when Processing a Batch Input Session
+</span></p>
+<A name="@@ITOC@@ABENBATCH_INPUT_03_10"></A>
+<p><span class="h3">
+Differences Between Online Processing and Background Processing
+</span></p>
+<p><span class="h4">
+Authorization Check
+</span></p>
+<p>
+In online processing, the authorizations of the user starting the session are checked. In background
+processing, the system checks the authorizations of the user specified in the session generation program.
+The user whose authorizations are checked in background processing is displayed in the session overview in the column "Authorization". <br>
+It may be that a particular user's session can be processed online but not in the background and vice versa. If an authorization check fails in background processing, the
+<a href="javascript:call_link('abenerror_message_glosry.htm')" class="grey" title="词汇表条目">error message</a> 390(00) is displayed which reads <span class="italic">"Processing session ** in background (SUBMIT error, see SYSLOG)"</span>.
+</p>
+<p><span class="h4">
+Different Background and Online Behavior of Application Transaction
+</span></p>
+<p>
+If the behavior of a transaction in the background differs from its behavior online (read <span class="qtext">sy-batch</span>),
+batch input sessions that contain this transaction may lead to errors in background processing; online, no errors occur.
+</p>
+<p><span class="h4">
+List Processing
+</span></p>
+<p>
+Batch input sessions containing transactions that include list processing (this means all
+<a href="javascript:call_link('abenreport_transaction_glosry.htm')" class="grey" title="词汇表条目">report transactions</a>) can only be processed online. <br>
+When processing these sessions in the background, batch input terminates with the error message 344(00) which reads "Batch input data for
+<a href="javascript:call_link('abendynpro_glosry.htm')" class="grey" title="词汇表条目">dynpro</a> SAPLSPRI 0100 does not exist" and the session then has the status "With errors".
+</p>
+<p><span class="h4">
+Cursor Position
+</span></p>
+<p>
+In completely inactive dynpros, the cursor is always positioned on a field in online processing. In
+the background, there is no screen output. As a result, the cursor is not positioned and problems can occur when processing the dynpro. <br>
+When processing a session with inactive dynpros in the background, batch input terminates with the error
+message 344(00) which reads <span class="italic">No batch input data for dynpro XXXXXXXX nnnn</span> and the session then has the status "With errors".
+</p>
+<p><span class="h4">
+Warning Dialog
+</span></p>
+<p>
+A <a href="javascript:call_link('abenwarning_glosry.htm')" class="grey" title="词汇表条目">warning dialog</a>
+(message type "W") can only be exited by pressing ENTER. For batch input, this means that dynpros with warning dialogs must each be included twice in the
+<a href="javascript:call_link('abendynpro_sequence_glosry.htm')" class="grey" title="词汇表条目">dynpro sequence</a>.
+</p>
+<A name="@@ITOC@@ABENBATCH_INPUT_03_11"></A>
+<p><span class="h3">
+User-Specific Formats (Date, Decimal Format)
+</span></p>
+<p>
+When generating a batch input session, the system uses the date and decimal display format relevant for the user currently logged on.
+</p>
+<p>
+When processing a session online, the system uses the display format relevant for the user currently
+logged on. When processing a session in the background, it uses the display format of the user for whom the authorization check is performed.
+</p>
+<p>
+This means that if the user generating a session has a different display format from the user processing
+the session (online!), errors can occur. If the user generating a session has a different display format
+from the user for whom the authorization check is performed (in the background!), errors can occur when processing the session.
+</p>
+<A name="@@ITOC@@ABENBATCH_INPUT_03_12"></A>
+<p><span class="h3">
+"Back", "Exit", and "Cancel"
+</span></p>
+<p>
+If "Back", "Exit", or "Cancel" is chosen when processing a batch input session online, the current transaction
+terminates and the processing resumes with the next transaction in the session. This is because the
+batch input processor interprets "Back", "Exit" and "Cancel" as valid actions for the transaction being processed. At the end, the session is flagged as "Processed".
+</p>
+<p>
+To exit a transaction in batch input, the batch input commands
+/<span class="qtext400">BDEL</span> (delete transaction),
+/<span class="qtext400">N</span> (next transaction), and
+/<span class="qtext400">BEND</span> (cancel (batch input)) should be used. When a batch input session has been canceled with /<span class="qtext400">BEND</span>, the status of the session is set to "Incorrect".
+</p>
+<A name="@@ITOC@@ABENBATCH_INPUT_03_13"></A>
+<p><span class="h3">
+SET/GET Parameters
+</span></p>
+<p>
+<a href="javascript:call_link('abenspa_gpa_parameter_1_glosry.htm')" class="grey" title="词汇表条目">SET/GET parameters</a> are not
+supported in batch input. With the many different transactions in batch input, it is not acceptable for one transaction to be able to determine the environment of the next transaction.
+</p>
+<A name="@@ITOC@@ABENBATCH_INPUT_03_14"></A>
+<p><span class="h3">
+Messages
+</span></p>
+<p>
+If the option "Extended log" is selected when processing a batch input session in the background, the
+I, S,and W messages of the transactions are written to the log. If A and E messages are output, batch input terminates.
+</p>
+<p>
+The behavior of the individual message types is as follows:
+</p>
+<ul class="disc">
+<li>A message (Abend)</li>
+</ul>
+<ul class="circlem2">
+<li>Online and background: Batch input is terminated and the session has the status "Incorrect".</li>
+</ul>
+<ul class="disc">
+<li>E message (Error)</li>
+</ul>
+<ul class="circlem2">
+<li>Online: The screen that contains the message is displayed and the input with the error must be corrected.</li>
+</ul>
+<ul class="circlem2">
+<li>Background: Batch input is terminated and the session has the status "Incorrect".</li>
+</ul>
+<ul class="disc">
+<li>I message (Info), S message (Success), W message (Warning)</li>
+</ul>
+<ul class="circlem2">
+<li>Online: With "Process visible", the message is output in the status bar; with "Display only errors", the message is not output.</li>
+</ul>
+<ul class="circlem2">
+<li>Background: If desired (see above), the message is written to the log.</li>
+</ul>
+<A name="@@ITOC@@ABENBATCH_INPUT_03_15"></A>
+<p><span class="h3">
+Updates
+</span></p>
+<p>
+In batch input (but not with CALL TRANSACTION USING), updates are generally synchronous, i.e. batch input waits for a reply from the update program.
+</p>
+<p>
+If problems occur when updating, this is logged with the
+<a href="javascript:call_link('abenerror_message_glosry.htm')" class="grey" title="词汇表条目">error message</a> "Update error".
+The long text of this message contains the return code value of the update program. The most frequently occurring return code values are:
+</p>
+<table border>
+<tr>
+<td>2</td>
+<td>Unable to insert update header</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Error when reading update header</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Update work process crash</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Update commit failed</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Error when reading update table</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Error when updating update table</td>
+</tr>
+<tr>
+<td>8</td>
+<td>No main memory for update program</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Error message in update mode resulting from application</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Unable to load dynpro due to lack of memory</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Incorrect update mode</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Update request locked in status RUN</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Update request locked in Status DELETE</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Incorrect update parameter</td>
+</tr>
+<tr>
+<td>15</td>
+<td>No update parameters exist</td>
+</tr>
+<tr>
+<td>16</td>
+<td>DEADLOCK during update</td>
+</tr>
+<tr>
+<td>17</td>
+<td>No update server active</td>
+</tr>
+<tr>
+<td>18</td>
+<td>No list of active update servers exists</td>
+</tr>
+</table><br>
+<p>
+Updates with errors can be analyzed and, if necessary, resubmitted using the transaction SM13.
+</p>
+<p>
+<span class="bold">Warning:</span>  If a transaction in a session is flagged as having errors as a result
+of an update error, the data still exists in the session and the session can be processed again. However,
+the session runs again and the update requests with the errors are also resubmitted, this produces duplicate records. For this reason, sessions should be resubmitted manually only in exceptional cases.
+</p>
+<A name="@@ITOC@@ABENBATCH_INPUT_03_16"></A>
+<p><span class="h3">
+System Crash
+</span></p>
+<p>
+If the system crashes while a session is being processed, the status ("in process") is not changed.
+To complete the processing, the session must first be released (by choosing <span class="italic">Session
+&rarr; Release to overview</span>). When the session is processed again, any transactions already processed are not processed again.
+</p>
+<A name="@@ITOC@@ABENBATCH_INPUT_03_17"></A>
+<p><span class="h2">
+What Does Not Batch-Input-Capable Mean?
+</span></p>
+<p>
+Transactions which behave differently in the background from online (read <span class="qtext">sy-batch</span>)
+cannot necessarily be processed in batch input, since sessions processed in the background can result in errors.
+</p>
+<p>
+Transactions with the following features are not always batch input capable:
+</p>
+<ul class="disc">
+<li>Interactive list processing (sessions cannot be processed in the background)</li>
+</ul>
+<ul class="disc">
+<li>Another transaction is started within batch input</li>
+</ul>
+<ul class="disc">
+<li>Deletion of a session with /i</li>
+</ul>
+<A name="@@ITOC@@ABENBATCH_INPUT_03_18"></A>
+<p><span class="h2">
+Log Reorganization
+</span></p>
+<p>
+The log files can be reorganized using the program <span class="lnkgrey">RSBDCREO</span>. Processed folders can also be deleted using RSBDCREO.
+</p>
+<A name="@@ITOC@@ABENBATCH_INPUT_03_19"></A>
+<p><span class="h2">
+Batch Input Authorizations <br><br>
+</span></p>
+<ul class="disc">
+<li>S_BDC_ALL, authorization for all batch input activities</li>
+</ul>
+<ul class="disc">
+<li>S_BDC_ABTC, processing of sessions in the background</li>
+</ul>
+<ul class="disc">
+<li>S_BDC_AONL, processing of sessions online</li>
+</ul>
+<ul class="disc">
+<li>S_BDC_ANAL, analysis of sessions/logs</li>
+</ul>
+<ul class="disc">
+<li>S_BDC_DELE, deletion of sessions/ logs</li>
+</ul>
+<ul class="disc">
+<li>S_BDC_FREE, release of sessions</li>
+</ul>
+<ul class="disc">
+<li>S_BDC_LOCK, locking/unlocking of sessions</li>
+</ul>
+<ul class="disc">
+<li>S_BDC_REOG, reorganization of logs and processed sessions</li>
+</ul>
+<p>
+
+</p>
+<p>
+
+</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

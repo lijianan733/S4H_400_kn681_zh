@@ -1,0 +1,126 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENRFC_SM59 -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="Defining Remote Destinations">
+<title>
+Defining Remote Destinations - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenrfc_sm59.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenrfc_sm59.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 754, &copy;Copyright 2025 SAP SE. All rights reserved.</p>
+<span class="path">
+</span>
+<p><span class="h1">
+Defining Remote Destinations
+</span></p>
+<p>
+<a href="javascript:call_link('abendestination_glosry.htm')" class="grey" title="词汇表条目">RFC destinations</a> are defined in
+the table <span class="qtext">RFCDES</span>. This table contains the logical destinations for remote function calls (RFCs). <br>
+The table <span class="qtext">RFCDES</span> cannot be edited directly. <br><br> <br>The logical destinations can be edited in the following ways:
+</p>
+<ul class="disc">
+<li>Transaction <span class="lnkgrey">SM59</span> or the menu path <br><span class="italic">Tools &rarr; Administration, Administration &rarr; Network &rarr; RFC Destinations</span></li>
+</ul>
+<ul class="disc">
+<li>Using the Implementation Guide (<span class="qtext">IMG</span>): <br>Choose <span class="italic">Tools
+&rarr; Business Engineering &rarr; Customizing, Implementation Projects &rarr; SAP Reference <span class="qtext">IMG</span></span> <br>
+In the hierarchy structure of the <span class="qtext">IMG</span>, choose <br>       <span class="bold">Cross-Application Components</span> <br>
+        <span class="bold">Distribution (<span class="qtext">ALE</span>)</span> <br>            <span class="bold">Communications</span> <br>
+               <span class="bold">Define RFC Destination</span> <br><br> <br>Each time a remote function
+is called, the remote system must be specified in the addition <span class="qtext">DESTINATION</span>. <br>The following information is required: <br><br></li>
+</ul>
+<ul class="disc">
+<li>Technical settings <br>- Connection type (<span class="qtext">TCP</span>, <span class="qtext">SNA</span>, ...) <br>
+- Remote system <br>- Destination <br>- Load distribution in a server group (optional) <br>- Name of the SAP target system (if load balancing used) <br>
+- Target host (if load balancing not used) <br>- Instance number <br><br></li>
+</ul>
+<ul class="disc">
+<li>Security options <br>Trusted system? <br><br></li>
+</ul>
+<ul class="disc">
+<li>Description of the logical destination <br><br></li>
+</ul>
+<ul class="disc">
+<li>Logon information for the user in question <br>- User <br>- Client <br>- Password <br>- System language <br>
+<br> <br>The names of the users who created and last changed the entry are displayed, along with a time stamp. <br>
+<br> <br>The remote system details must be specified for the system to create an entry in the table <span class="qtext">RFCDES</span>. <br>
+In <a href="javascript:call_link('abenremote_function_call_glosry.htm')" class="grey" title="词汇表条目">remote function call</a>,
+the user, client, and password fields are read from the RFC destination information to log onto the remote system. <br>
+For RFC communication with different clients and users, a correct password must be entered for each separate user. <br>
+If the language, client, and user fields are not filled for the RFC destination, the entries from the system table are used as default values. <br><br></li>
+</ul>
+<A name="@@ITOC@@ABENRFC_SM59_1"></A>
+<p><span class="h3">
+Notes <br>
+</span></p>
+<ul class="disc">
+<li>The logon fields do not need to be filled in the case of RFC communication within the same
+<a href="javascript:call_link('abensap_nw_abap_glosry.htm')" class="grey" title="词汇表条目">AS ABAP</a> with the same client and user. In this case, no password needs to be specified either.</li>
+</ul>
+<ul class="disc">
+<li>If RFC is in dialog mode (not in background mode) and the RFC logon fails, an RFC logon screen is displayed allowing logons to the remote system 'by hand'. <br>
+ <br>The RFC logon screen is <span class="bold">not</span> displayed if the first function module to
+be called belongs to the system-specific function group <span class="qtext">SRFC</span>. This function
+group includes function modules such as <span class="qtext">RFC_PING</span>, <span class="qtext">RFC_SYSTEM_INFO</span>, and <span class="qtext">RFC_LOGIN</span>. <br>
+ <br>If an RFC logon window is required anyway, RFC communication to the
+<a href="javascript:call_link('abendestination_glosry.htm')" class="grey" title="词汇表条目">RFC destination</a> in question must be closed after this call using the function module 'RFC_CONNECTION_CLOSE'. <br>
+ <br>No logon screen is displayed if <a href="javascript:call_link('abensmt1_2.htm')" class="blue">trusted/trusting systems</a> are used.</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

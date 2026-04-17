@@ -1,0 +1,124 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENSET_REFERENCES -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="Setting Reference Variables">
+<meta name="keywords" content="ABAP, Set Reference Variables">
+<title>
+Setting Reference Variables - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenset_references.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenset_references.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 754, &copy;Copyright 2025 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP &#x2212; Reference</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_data_working.htm')" class="blue">Processing Internal Data</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenvalue_assignments.htm')" class="blue">Assignments</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenreference_assignments.htm')" class="blue">Assigning References</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+Setting Reference Variables
+</span></p>
+<p>
+Special rules apply when setting the reference or pointer of a reference variable:
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abenconversion_references.htm')" class="blue">Assignment Rules for Reference Variables</a></li>
+</ul>
+<p>
+A reference is always set as an <a href="javascript:call_link('abenup_cast_glosry.htm')" class="grey" title="词汇表条目">up cast</a> or as a
+<a href="javascript:call_link('abendown_cast_glosry.htm')" class="grey" title="词汇表条目">down cast</a>. When a reference variable is assigned to another reference variable, two different assignment operators are used plus a constructor operator.
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abapmove_cast.htm')" class="blue"><span class="qtext">=</span>, <span class="qtext">?=</span> - UP Cast and Down Cast</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abenconstructor_expression_cast.htm')" class="blue"><span class="qtext">CAST</span> - Casting Operator</a></li>
+</ul>
+<p>
+References in data reference variables can point to existing data objects. Here, a statement and a constructor operator are used.
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abapget_reference.htm')" class="blue"><span class="qtext">GET REFERENCE</span></a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abenconstructor_expression_ref.htm')" class="blue"><span class="qtext">REF</span> - Reference Operator</a></li>
+</ul>
+<p>
+Like all data objects, reference variables are initialized using the statement <a href="javascript:call_link('abapclear.htm')" class="blue"><span class="qtext">CLEAR</span></a>.  The content of an initial reference variable is the
+<a href="javascript:call_link('abennull_reference_glosry.htm')" class="grey" title="词汇表条目">null reference</a>, which does not point to an object and can be assigned to every reference variable.&#x3000;
+</p>
+<p><span class="h4">
+Notes
+</span></p>
+<ul class="disc">
+<li>The same rules apply to references set when <a href="javascript:call_link('abencreate_objects.htm')" class="blue">objects are created</a> as to assignments.</li>
+</ul>
+<ul class="disc">
+<li>When a reference variable containing a <a href="javascript:call_link('abenheap_reference_glosry.htm')" class="grey" title="词汇表条目">heap reference</a> is initialized, this affects
+<a href="javascript:call_link('abengarbage_collector_glosry.htm')" class="grey" title="词汇表条目">Garbage Collector</a>.</li>
+</ul>
+<br>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<a href="javascript:call_link('abenconversion_references.htm')" class="blue">Assignment Rules for Reference Variables</a><br>
+<a href="javascript:call_link('abapmove_cast.htm')" class="blue">=, ?= - Up Cast and Down Cast</a><br>
+<a href="javascript:call_link('abenconstructor_expression_cast.htm')" class="blue">CAST - Casting Operator</a><br>
+<a href="javascript:call_link('abapget_reference.htm')" class="blue">GET REFERENCE</a><br>
+<a href="javascript:call_link('abenconstructor_expression_ref.htm')" class="blue">REF - Reference Operator</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

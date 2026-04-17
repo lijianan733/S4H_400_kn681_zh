@@ -1,0 +1,21 @@
+# ABAP CDS（Core Data Services）
+
+- 总览与语言元素
+  - [abencds.htm](../../abencds.htm)
+  - [abencds_syntax.htm](../../abencds_syntax.htm)
+  - [abencds_language_elements.htm](../../abencds_language_elements.htm)
+- 注解与作用域
+  - [abencds_annotations.htm](../../abencds_annotations.htm)
+  - [abencds_anno_definition.htm](../../abencds_anno_definition.htm)
+  - [abencds_anno_usage.htm](../../abencds_anno_usage.htm)
+  - [abencds_annotations_scopes.htm](../../abencds_annotations_scopes.htm)
+- SAP/框架注解
+  - [abencds_annotations_sap.htm](../../abencds_annotations_sap.htm)
+  - [abencds_annotations_abap.htm](../../abencds_annotations_abap.htm)
+  - [abencds_annotations_frmwrk.htm](../../abencds_annotations_frmwrk.htm)
+- 数据定义与视图/表函数
+  - [abenddic_cds_entities.htm](../../abenddic_cds_entities.htm)
+  - [abenddic_cds_views.htm](../../abenddic_cds_views.htm)
+  - [abenddic_cds_table_functions.htm](../../abenddic_cds_table_functions.htm)
+- 元数据扩展
+  - [abencds_meta_data_extensions.htm](../../abencds_meta_data_extensions.htm)

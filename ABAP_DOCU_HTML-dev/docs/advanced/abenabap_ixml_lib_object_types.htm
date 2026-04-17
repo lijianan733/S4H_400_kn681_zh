@@ -1,0 +1,126 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENABAP_IXML_LIB_OBJECT_TYPES -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="iXML Library - Classes and Interfaces">
+<title>
+iXML Library - Classes and Interfaces - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenabap_ixml_lib_object_types.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenabap_ixml_lib_object_types.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 754, &copy;Copyright 2025 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP &#x2212; Reference</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_data_communication.htm')" class="blue">Data Interfaces and Communication Interfaces</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_xml.htm')" class="blue">ABAP and XML</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_xml_libs.htm')" class="blue">Class Libraries for XML</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_ixml_lib.htm')" class="blue">iXML Library</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+iXML Library - Classes and Interfaces
+</span></p>
+<p>
+The following sections list the classes and interfaces of iXML Library.
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abenabap_ixml_lib_cl_ixml.htm')" class="blue">Access class</a></li>
+</ul>
+<ul class="disc">
+<li> <a href="javascript:call_link('abenabap_ixml_lib_stream.htm')" class="blue">Streams</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abenabap_ixml_lib_parser.htm')" class="blue">Parser</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abenabap_ixml_lib_dom.htm')" class="blue">DOM</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abenabap_ixml_lib_renderer.htm')" class="blue">Renderer</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abenabap_ixml_lib_encoding.htm')" class="blue">Encoding</a></li>
+</ul>
+<p>
+All object types in iXML Library incorporate the interface IF_IXML_UNKNOWN. Reference variables of this
+type can point to all objects in iXML Library. The interface IF_IXML_UNKNOWN contains the method QUERY_INTERFACE, which can be used for special
+<a href="javascript:call_link('abenixml_down_casts.htm')" class="blue">down casts</a> within iXML Library.
+</p>
+<p><span class="h4">
+Notes
+</span></p>
+<ul class="disc">
+<li>The required classes and interfaces are documented in Class Builder.</li>
+</ul>
+<ul class="disc">
+<li>Apart from the access class <a href="javascript:call_link('abenabap_ixml_lib_cl_ixml.htm')" class="blue">CL_IXML</a>, no
+classes generally need to be specified directly in a program. All reads and writes are performed using interfaces. Even CL_IXML is required only once, to execute the method CREATE.</li>
+</ul>
+<ul class="disc">
+<li>Each component interface of a composite interface has an alias name, which means that the components of the general interface can always be used directly in the special interface.</li>
+</ul>
+<br>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<a href="javascript:call_link('abenabap_ixml_lib_cl_ixml.htm')" class="blue">iXML Library - Access Class</a><br>
+<a href="javascript:call_link('abenabap_ixml_lib_stream.htm')" class="blue">iXML Library - Streams</a><br>
+<a href="javascript:call_link('abenabap_ixml_lib_parser.htm')" class="blue">iXML Library - Parser</a><br>
+<a href="javascript:call_link('abenabap_ixml_lib_dom.htm')" class="blue">iXML Library - DOM</a><br>
+<a href="javascript:call_link('abenabap_ixml_lib_renderer.htm')" class="blue">iXML Library - Renderer</a><br>
+<a href="javascript:call_link('abenabap_ixml_lib_encoding.htm')" class="blue">iXML Library - Encoding</a><br>
+<a href="javascript:call_link('abenixml_down_casts.htm')" class="blue">iXML Library, Down Casts</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>
