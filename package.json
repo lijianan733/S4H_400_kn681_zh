@@ -1,7 +1,7 @@
 {
     "name": "webview-example",
-    "displayName": "Webview Example",
-    "description": "A minimal VS Code extension demonstrating Webview usage.",
+    "displayName": "Webview Example & EPUB Reader",
+    "description": "A VS Code extension demonstrating Webview usage and reading EPUB e-books.",
     "version": "0.0.1",
     "engines": {
         "vscode": "^1.80.0"
@@ -22,7 +22,28 @@
             {
                 "command": "webviewExample.show",
                 "title": "Show Webview Example"
+            },
+            {
+                "command": "epubReader.open",
+                "title": "Open EPUB Reader",
+                "category": "EPUB"
             }
-        ]
+        ],
+        "menus": {
+            "explorer/context": [
+                {
+                    "command": "epubReader.open",
+                    "when": "resourceExtname == .epub",
+                    "group": "navigation"
+                }
+            ]
+        }
+    },
+    "activationEvents": [
+        "onCommand:epubReader.open"
+    ],
+    "dependencies": {
+        "fast-xml-parser": "~5.8.0",
+        "jszip": "^3.10.1"
     }
 }
